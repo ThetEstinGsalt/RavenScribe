@@ -1,0 +1,12 @@
+.controldbar {
+
+    background-color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* height: 60%; */
+    height: 53vh;
+    z-index: 1000;
+    transition: .7s all ease;
+  }
+  
