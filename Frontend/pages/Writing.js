@@ -1,330 +1,675 @@
 
-import Controlbar from '../public/components/Controlbar';
 
 
 
 import React, { Component } from 'react'
-import axios from 'axios'
-import { connect } from 'react-redux';
-import * as actions from '../store/actions/auth';
+import Controlbar from '../public/components/Controlbar';
 
-
-
-
-
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-axios.defaults.xsrfCookieName = "csrftoken";
-
-
-// import Slugify from 'slugify'
 class Writing extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: null,
-            thumbnail: null,
-            Permissions: false,
-            code: null,
-            Blog: null,
 
-        }
-
-
-        this.preinfo = () => {
-            let title = document.getElementById("Blog-title").value
-            let thumbnail = document.getElementById("Blog-thumbnail").value
-            let preinfovar = document.getElementsByClassName("preinfo")[0]
-            this.setState({ title: title, thumbnail: thumbnail })
-            preinfovar.style.display = 'none'
+        this.heading = this.heading.bind(this);
+        this.componentDidMount=this.componentDidMount.bind(this)
 
 
 
-        }
-        this.handleSubmit = async function (event) {
-
-            event.preventDefault()
-            this.props.CheckUser()
-            let title = document.getElementsByName("heading")[0].innerText
-            let thumbnail = document.getElementById("thumbnail").src
-            let concept = document.getElementsByClassName("concept")[0].innerText
-            let article = document.getElementsByName("article")[0]
-            let filt_article = document.getElementsByName("article")[0].innerHTML
-            console.log(this.props.JWT)
-
-
-
-                    console.log(article.childNodes)
-                    for (let i = 0; i < article.childNodes.length; i++) {
-                        article.childNodes[i].setAttribute('contenteditable', 'false');
-                        // if(article.childNodes[i].className!=='subHeading')
-                        // article.childNodes[i].style.background = "white"
-
-
-                    }
-                    // let filt_article = document.getElementsByName("article")[0]
-
-
-                    return await axios.post('http://127.0.0.1:8000/api/Writing/Publish/', {
-                        // user_pass: localStorage.getItem("_zy97#zw&w*2sr0jogfm=kp!p4$rj2@$f%tsunc7p0u5$zhzal"),
-                        // user_name: localStorage.getItem("name"),
-
-                        url: title.toString().toLowerCase()
-                            .replace(/\s+/g, '-')           // Replace spaces with -
-                            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-                            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-                            .replace(/^-+/, '')             // Trim - from start of text
-                            .replace(/-+$/, ''),
-
-                        Title: title,
-                        Thumbnail: thumbnail,
-                        Concept: concept,
-                        Content: filt_article,
-                        Rating: 0,
-                        Berries: 0,
-                        views: 0,
-                        // timestemp: '2013-06-26 00:14:26.260524',
-                        category: "something",
-                        keywords: "something",
-                        restriction: false,
-
-                        user:this.props.decode(localStorage.getItem("JWT")).jwt,
-
-                    }
-                    ).then(res => console.log(this.props.decode(localStorage.getItem("JWT")))).catch(error => console.log(error.response.data))
-
-                // case 'put':
-                //     for (let i = 0; i < article.childNodes.length; i++) {
-                //         article.childNodes[i].setAttribute('contenteditable', 'false');
-                //         // if(article.childNodes[i].className!=='subHeading')
-                //         // article.childNodes[i].style.background = "white"
-
-
-                //     }
-                //     console.log(title)
-                //     return await axios.put(`http://127.0.0.1:8000/api/${this.state.Blog.sno}/update/`, {
-                //         url: title.toString().toLowerCase()
-                //             .replace(/\s+/g, '-')           // Replace spaces with -
-                //             .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-                //             .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-                //             .replace(/^-+/, '')             // Trim - from start of text
-                //             .replace(/-+$/, ''),
-
-                //         Title: title,
-                //         Thumbnail: thumbnail,
-                //         Concept: concept,
-                //         Content: filt_article,
-                //         Rating: 0,
-                //         Berries: 0,
-                //         views: 0,
-                //         // timestemp: '2013-06-26 00:14:26.260524',
-                //         restriction: false,
-                //         category: "something",
-                //         keywords: "something",
-                //         user: this.state.Blog.user
-
-
-
-
-                //     }
-
-                //     ).then(res => console.log(res)).catch(err => console.log(err))
-                // let filt_article = document.getElementsByName("article")[0].innerHTML
-
-
-
-
-
-
-                // ).then(res => this.window.location = "/").catch(err => console.log(err))
-
-
-        }
     }
 
 
-    // componentDidMount = () => {
+    state = {
+        WriteEdCont:null,
+        active:'blog-content',
+        ID_index:0,
+        selected:null
 
-    //     axios.get('https://api.unsplash.com/search/photos?page=1&query=apple&client_id=xHU5EEvdCdtZQZgPY0pEbjrswG0TTcVaL6KcqKDarkQ').then((response) => {
-    //         // console.log()
-    //         document.querySelector("div").innerHTML += `<img src="${response.data.results[0].links.download}"><img/>`
-    //     })
+      }
+
+
+    Delete = () => {
+        let content = document.querySelector('.article')
+        // let temp = document.createElement("div")
+        // temp.className = "temp"
+
+        console.log(this.state.selected)
+
+
+        try {
+            // content.replaceChild(temp, this.state.selected)
+            content.removeChild(this.state.selected)
+
+
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+
+    }
+
+
+    text=()=>{
+        this.setState({
+            active:'blog-content'
+     
+        })
+
+        
+    }
+
+
+    heading=()=>{
+
+        this.setState({
+            active:'article-heading'
+     
+        })
+        console.log("updated")
+
+
+    }
+
+    subheading=()=>{
+
+        this.setState({
+            active:'subHeading'
+     
+        })
+        
+
+
+    }
+
+    list=()=>{
+        this.setState({
+            active:'list'
+     
+        })
+
+    }
+
+    quote=()=>{
+        this.setState({
+            active:'quotes'
+     
+        })
+
+        
+    }
+    // ReIndex=()=>{
+    //     let content=document.getElementsByClassName("blog-content")
+
+        
+    //     for(let i=0;i<content.length;i++){
+    //         let self=this;
+    
+    //             content[i].addEventListener("click",function(e){
+    //                 self.setState({
+    //                     WriteEdCont:[e.target.innerHTML,content[i].id]
+                        
+    //                 },()=>{
+    //                     console.log("nothing")
+    //                     // article.addEventListener("input",function(e){
+    
+                            
+    
+    //                     //     console.log(self.state.WriteEdCont)
+                          
+                
+    //                     // })
+    
+    //                 })
+                
+           
+           
+                  
+                
+                    
+    //             })
+    
+    
+     
+              
+    
+    //         }
+
 
     // }
 
-    componentDidMount = () => {
-        // if (this.props.requestType == "put") {
-        //     let queryp = ((window.location.href.split("/"))[window.location.href.split("/").length - 2])
-        //     let code = ((window.location.href.split("/"))[window.location.href.split("/").length - 1])
-        //     let name = queryp.replace(/^./, queryp[0].toUpperCase());
+  
+
+    componentDidMount=()=>{
 
 
-        //     axios.post("http://127.0.0.1:8000/rest-auth/login/", {
-        //         username: name,
-        //         password: localStorage.getItem("_zy97#zw&w*2sr0jogfm=kp!p4$rj2@$f%tsunc7p0u5$zhzal"),
-
-        //     }).then(res => {
-
-        //         axios.get(`http://127.0.0.1:8000/api/${code}`).then(res => {
-
-        //             this.setState({ Blog: res.data, code: res.data.user, Permissions: true }, () => {
-        //                 axios.get(`http://127.0.0.1:8000/api/account/${name}`).then(ress => {
-        //                     this.setState({ Permissions: ress.data.sno === this.state.code })
-        //                     if (this.state.Permissions) {
-
-        //                         document.getElementsByClassName("article")[0].innerHTML = this.state.Blog.Content
-        //                         document.getElementById("concept").innerText = this.state.Blog.Concept
-        //                         document.getElementById("thumbnail").src = this.state.Blog.Thumbnail
-        //                         document.getElementsByClassName("blog-heading")[0].innerText = this.state.Blog.Title
-
-        //                         let article = document.getElementsByClassName("article")[0]
-
-        //                         for (let i = 0; i < article.childNodes.length; i++) {
-        //                             article.childNodes[i].setAttribute('contenteditable', 'true');
+  
+        let article=document.getElementsByClassName("article")[0]
+        let content=document.getElementsByClassName("blog-content")
 
 
-
-        //                         }
+        var ce = article
+        ce.addEventListener('paste', function (e) {
+          e.preventDefault()
+          var text = e.clipboardData.getData('text/plain')
+          document.execCommand('insertText', false, text)
+        })
 
 
 
 
-        //                     }
 
-        //                 })
+        // for(let i=0;i<content.length;i++){
+  
+      
+
+        article.addEventListener('click',(e)=>{
+
+            this.setState({
+                WriteEdCont:[e.target.innerHTML,e.target.id],
+                selected:e.target
+                
+            },()=>{
+                // article.addEventListener("input",function(e){
+
+                    
+
+                //     console.log(self.state.WriteEdCont)
+                  
+        
+                // })
+
+            })
+
+
+        })
+
+
+
+
+
+        // for(let i=0;i<content.length;i++){
+
+        //     let self=this;
+    
+        //         content[i].addEventListener("click",function(e){
+             
+              
+        //             console.log(e.target)
+        //             console.log(content[i])
+                
+        //             console.log(e.target)
+     
+        //             self.setState({
+        //                 WriteEdCont:[e.target.innerHTML,content[i].id],
+        //                 selected:e.target
+                        
+        //             },()=>{
+        //                 // article.addEventListener("input",function(e){
+    
+                            
+    
+        //                 //     console.log(self.state.WriteEdCont)
+                          
+                
+        //                 // })
+    
         //             })
-
-
-
-
-
-
+                
+           
+           
+                    
         //         })
-
-
+    
+    
+     
+              
+    
         //     }
 
+        
+    
+        
+        const aff=this;
+
+      
+        article.addEventListener("input",function(e){
+            
+            if(e.inputType=="insertParagraph"){
+                for(let j=0;j<article.childElementCount;j++){
+                
+                        
+                        // const index=article.children[j]
+
+                        if(j!==0){
+                            if(article.children[j].id==article.children[j-1].id){
+                                article.children[j].id=`${article.children[j].id}D`
+                                console.log(article.children[j])
+                            }
+                        }
+
+                    
+
+
+            
+
+            }
+
+
+            }
+   
+            if(document.getElementById(aff.state.WriteEdCont[1])!==null && aff.state.active!=='blog-content'){
+                console.log(`state ${aff.state.WriteEdCont}`)
+            let extended =document.getElementById(aff.state.WriteEdCont[1])
+            let prev=aff.state.WriteEdCont[0]
+
+            console.log(extended.innerHTML)
+            console.log(aff.state.WriteEdCont[0])
 
 
 
-        //     )
-
-        // }
-
-
-
-
-    }
+            // var s = extended.innerHTML;
+            // var index = 10;
+            // s = s.substring(0, index) + 'jakalalalallala' + s.substring(index + 1);
+            // extended.innerHTML=s
 
 
-    render() {
+            // console.log(extended.innerHTML)
+
+            // extended.innerHTML[10]="jakalalalallala"
+
+            // ---------------------------ISOLATION----------------------------------------------
+            
+            // ---------------------------ISOLATION----------------------------------------------
+            for(let i=0;i<extended.innerHTML.length;i++){
+          
+
+                let extended =document.getElementById(aff.state.WriteEdCont[1])
+                let prev=aff.state.WriteEdCont[0]
+                
+                let str=extended.innerHTML
+                let index=i
+
+                if(prev[i]!==extended.innerHTML[i]){
+                    let self=aff
+                
 
 
-        return (
-            <>
+                    // extended.innerHTML[i]==`</div><div class="article-heading">${extended.innerHTML[i]}</div><div class="blog-content>"`
                
-                        <div className="preinfo" >
-                            <input type="text" id="Blog-title" />
-                            <input type="text" id="Blog-thumbnail" />
-                            <button onClick={this.preinfo}>Click me</button>
+                    let id =extended.id
+                    let conditionfst=str.substring(0,index)!==""
 
-                        </div>
+                    // let fnlstr=str.substring(0,index)+`</div><div class="blog-content>`+str.substring(index+1)
 
 
+                    if(conditionfst){
+                        var divfrst = document.createElement('div');
+                        divfrst.className="blog-content"
+                        divfrst.innerHTML=str.substring(0,index)
 
-                        <form action="" onSubmit={(event) => this.handleSubmit(event,"post")} method="post" htmltype="post"><button id="blog_submit" type="submit">Submit</button></form>
-
-
-
-
-                        <div className="site-content">
-                            <div class="blog-heading" name="heading">{this.state.title} </div>
-                            <img src={this.state.thumbnail} alt="" id="thumbnail" />
-
-
-                            <div className="concept" id="concept" name="Blog_concept">
-
-                            </div>
-                            <div class="article" name="article">
+                    }
+                  
+       
+                    var current=document.createElement('div');
+                    current.className=self.state.active
+                    current.innerText=extended.innerHTML[i]
 
 
 
+                    let condition=str.substring(index+1)!==""
 
-
-                            </div>
-
-
-
-
-                        </div>
-                        <section style={{ height: 59 + 'vh' }}></section>
-                        <Controlbar/>
-
-
-
-
-
-{/* 
-                {this.props.requestType == "put" &&
-
-                    <>
-
-                        <form action="" onSubmit={(event) => this.handleSubmit(event, this.props.requestType)} method="post" htmltype="post"><button id="blog_submit" type="submit">Submit</button></form>
-
-
-
-
-                        <div className="site-content">
-                            <div class="blog-heading" name="heading"> </div>
-                            <img alt="" id="thumbnail" />
-
-
-                            <div className="concept" id="concept" name="Blog_concept">
-
-                            </div>
-                            <div class="article" name="article">
-
-
-
-
-
-
-                            </div>
-
-
-
-
-                        </div>
-                        <section style={{ height: 59 + 'vh' }}></section>
-
-
-                    </>
-
-
-
-                }
- */}
-
-            </>
-        )
-    }
-}
-
-
-const mapStateToProps = (state) => {
-    return {
-        JWT: state.jwt,
+                    if(condition){
+                        var divsnd = document.createElement('div');
+                        divsnd.className="blog-content"
+                        divsnd.innerHTML=str.substring(index+1)
+    
     
 
+                    }
+        
+                    if(extended.id[0]!=="b"){
+                        if(conditionfst){
+                            divfrst.id=`bf${id}${self.state.ID_index}`
+
+
+                        }
+                        if(condition){
+                            divsnd.id=`bl${id}${self.state.ID_index}`
+
+
+                        }
+
+                    }
+                    else{
+                        // let num=id.slice(-1)
+                        let nxtID=`b${extended.id}${self.state.ID_index}`
+                        if(conditionfst){
+                            divfrst.id=`${nxtID.replace("l","f")}`
+
+
+                        }
+
+                        if(condition){
+                            divsnd.id=`${nxtID.replace("f","l")}`
+
+
+                        }
+
+                    }
+                    self.setState({
+                        ID_index:self.state.ID_index+1
+                        
+                    })
+
+      
+                    let elem=document.getElementById(extended.id.replace("f","l"))
+
+          
+
+                    
+
+                        let save=extended.nextSibling
+
+                        let parent=extended.parentNode
+                        
+                        
+
+
+
+                    if(self.state.active!=="blog-content"){
+                        if(extended.id.includes("b")){
+
+                            parent.removeChild(extended)
+                            
+                            if(conditionfst){
+                                parent.insertBefore(divfrst,save)
+
+
+                            }
+                            
+                         
+                            if(conditionfst && condition){
+                                parent.insertBefore(current,save)
+                                console.log(save)
+
+                            }
+                            else{
+                                parent.insertBefore(current,save)
+                            }
+
+
+                            if(condition){
+                                parent.insertBefore(divsnd,save)
+
+
+                            }
+    
+                        }
+                        else{
+                         
+                            parent.removeChild(extended)
+                            if(conditionfst){
+                                parent.appendChild(divfrst)
+
+                                
+                            }
+                  
+                            parent.insertBefore(current,save)
+
+
+                        
+                            if(condition){
+                                parent.appendChild(divsnd)
+
+
+                            }
+    
+                        }
+
+                        self.text()
+
+          
+    
+                      
+    
+
+
+
+                    }
+                            // --------------------cursor_function---------------
+                    
+                            let tag=document.getElementsByClassName(self.state.active)
+                            console.log(tag)
+                            let setpos=document.createRange()
+        
+                            let set=window.getSelection()
+                            setpos.setStart(tag[0], 1)
+                            setpos.collapse(true);
+                            set.removeAllRanges();
+                            set.addRange(setpos);
+                            tag[0].focus();
+        
+        
+                            // ---------------------------
+
+            
+
+        
+              
+
+
+
+
+
+
+                        // let bst=content.
+ 
+                    
+
+
+
+                    
+                  
+
+
+                    // console.log(fnlstr)
+                    // extended.innerHTML=fnlstr
+
+
+
+                    console.log(extended.innerHTML)
+                    // this.ReIndex()
+
+
+                    for(let i=0;i<content.length;i++){
+                        let jap=aff;
+                            
+                            content[i].addEventListener("click",function(e){
+                                
+                                try{
+                                    jap.setState({
+                                        WriteEdCont:[e.target.innerHTML,content[i].id],
+                                        selected:e.target
+                                        
+                                    },()=>{
+                                        console.log(jap.state.selected)
+                    
+                                    })
+
+                                }
+                                catch(e){
+                                    console.log("ERROR TO BE NOTED")
+                                    console.log(e)
+                                }
+                          
+                            
+                       
+                       
+                              
+                            
+                                
+                            })
+                
+                
+                 
+                          
+                
+                        }
+           
+                    
+                    for(let j=0;j<article.childElementCount;j++){
+               
+
+                        let self=aff;
+                    
+                        
+
+                        article.children[j].addEventListener("click",function(e){
+                            console.log(article.children[j])
+                            self.setState({
+                                WriteEdCont:[e.target.innerHTML,article.children[j].id],
+                                selected:e.target
+                            })
+                          
+                                
+                
+                        })
+                        }
+                    
+                    break
+
+             
+                   
+                }
+
+                    
+            }
+  
+
+
+                        
+            
+
+      
+                // if(extended[i]!==prev[i]){
+                //     console.log(prev[i])
+                // }
+
+            }
+
+            // for(let j=0;j<article.childElementCount;j++){
+            //     let self=aff;
+            //     if((article.children[j].innerText.replace(/(\r\n|\n|\r)/gm, "").trim())==""){
+            //         console.log("controlled ")
+            //         article.children[j].setAttribute("class",self.state.active)
+            //     }
+
+
+
+          
+            
+                
+
+            //     article.children[j].addEventListener("click",function(e){
+            //         console.log(article.children[j])
+            //         self.setState({
+            //             selected:e.target
+            //         })
+                  
+                        
+        
+            //     })
+            //     }
+
+
+        
+          
+
+        })
+
+
+
+
+
+
+
+      
+    }
+
+    
+
+    render() { 
+      
+        return (  
+            <>
+    
+            <div className="article"   contentEditable="true"  >
+                <div className='blog-content' id="1" >
+                This is part 1 This is part 2 This is part 3
+                </div>
+                
+            
+              
+
+            </div>
+
+            <Controlbar/>
+
+            {/* <div className="controlbar">
+                <button onClick={this.text} id="text">T</button>
+                <br/>
+                <button onClick={this.heading} id="heading">H</button>
+                <br/>
+                <button onClick={this.subheading} id="subheading">sH</button>
+                <button onClick={this.list} id="list">Li</button>
+                <button onClick={this.quote} id="quote">Q</button>
+                <br/>
+                <button onClick={this.Delete} id="delete">Delete</button>
+            </div> */}
+            
+            </>
+        );
     }
 }
+ 
+export default Writing;
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        decode: (JWT) => dispatch(actions.authJWT(JWT)),
-        CheckUser: () => dispatch(actions.authCheckState()),
+// ---------------------------IMPORTS--------------------------
 
-    }
-}
 
-// export default Writing
-export default (connect(mapStateToProps,mapDispatchToProps)(Writing))
+
+// import axios from 'axios'
+// import { connect } from 'react-redux';
+// import * as actions from '../store/actions/auth';
+
+
+
+
+
+// axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+// axios.defaults.xsrfCookieName = "csrftoken";
+
+
+
+
+
+
+// ---------------------__REDUX----------------------------
+
+// const mapStateToProps = (state) => {
+//     return {
+//         JWT: state.jwt,
+    
+
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         decode: (JWT) => dispatch(actions.authJWT(JWT)),
+//         CheckUser: () => dispatch(actions.authCheckState()),
+
+//     }
+// }
+
+// // export default Writing
+// export default (connect(mapStateToProps,mapDispatchToProps)(Writing))

@@ -1,15 +1,21 @@
 import '../styles/globals.css'
 import NavigationBar from '../public/components/Navigation'
+import { combineReducers } from "redux";
 
 import { Provider } from 'react-redux';
-import reducer from '../store/reducers/auth';
+import reducerauth from '../store/reducers/auth';
+import reducerEdit from '../store/reducers/Editing';
 import thunk from 'redux-thunk'
 import { configureStore } from "@reduxjs/toolkit";
 
 
+const rootReducer = combineReducers({
+  Edit: reducerEdit,
+  auth: reducerauth
+});
 
 const store = configureStore({
-  reducer: reducer,
+  reducer: rootReducer,
   middleware: [thunk],
 
 
@@ -19,12 +25,13 @@ const store = configureStore({
 
 
 
+
 function MyApp({ Component, pageProps }) {
  
   return ( <Provider store={store}>
-    <NavigationBar/>
+    {/* <NavigationBar/> */}
 
-    <Component {...pageProps} />
+    <Component {...pageProps}  />
 
 
   </Provider>)

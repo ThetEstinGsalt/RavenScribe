@@ -113,10 +113,10 @@ form {
   filter: brightness(0.97);
 }
 
-.writing_control {
+/* .writing_control {
   width: 59%;
 
-}
+} */
 
 .writing_item {
   border-bottom: 1px solid gray;
@@ -129,7 +129,7 @@ form {
   top: -1em;
 }
 
-.EditingComp {
+/* .EditingComp {
   transition: .4s height;
   overflow: hidden;
   border-bottom: 1px solid gray;
@@ -141,22 +141,22 @@ form {
   height: 0.7em;
   width: 1em;
   margin-left: 88%;
-}
+} */
 
-.writing_control {
+/* .writing_control {
   transition: .4s height;
   overflow-y: scroll;
   height: 50vh;
   margin-top: 1.5em;
-}
+} */
 
-.bar {
+/* .bar {
   transition: .4s height;
   height: 0em;
   display: flex;
   flex-direction: column;
 
-}
+} */
 
 textarea {
   /* resize: horizontal; */
@@ -167,30 +167,26 @@ textarea {
 
 }
 
-.frame {
+/* .frame {
   width: 100%;
   height: 46.5vh;
-}
+} */
 
-.imageAndVideo {
+/* .imageAndVideo {
 
   width: 40%;
   margin-right: auto;
   margin-left: auto;
   position: relative;
   top: 1.5em;
-  /* height: 48vh; */
-  height: 51vh;
-}
 
-.option img {
+  height: 51vh;
+} */
+
+/* .option img {
   height: 1.8em;
 
   margin: 0.5em 2em;
-
-  /* position: relative;
-  left: 16em;
-  bottom: 1.4em; */
 
 
 }
@@ -202,14 +198,14 @@ textarea {
   position: relative;
   bottom: 0.5em;
 }
+ */
 
-
-.writing_control .EditingComp img {
+/* .writing_control .EditingComp img {
   height: 0.7em;
-}
+} */
 
 
-.cust_btn {
+/* .cust_btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -225,15 +221,15 @@ textarea {
   text-align: center;
   align-items: center;
   margin: 1em 2em;
-}
+} */
 
-.Unroll {
+/* .Unroll {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+
   justify-content: space-between;
   height: 4em;
-}
+} */
 
 
 
@@ -2353,10 +2349,10 @@ a:hover {
 .promotion {} */
 
 
-.option {
+/* .option {
   margin: 1em 1em;
   font-size: 1.3rem;
-}
+} */
 
 #recom_diff_hr {
 
