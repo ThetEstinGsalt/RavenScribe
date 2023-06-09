@@ -19,31 +19,55 @@ class ImagesFet extends Component {
         }
     }
     componentDidUpdate(){
+        console.log(this.props)
 
         let imageDiv=document.getElementById("image_div")
-        console.log(this.props.Fetched)
-        console.log(this.props.Fetched.photos.length)
-        for(let i=0;i<this.props.Fetched.photos.length;i++){
-            // let image=document.createElement("img")
-            let image=document.createElement("img")
-            image.setAttribute("src",this.props.Fetched.photos[`${i}`].src.original)
-            image.setAttribute("class",`${styles.FetchedImage}`)
-            imageDiv.appendChild(image)
+        let length=this.props.Fetched.photos.length
+        
+
+
+        if(imageDiv.childElementCount!==length){
+            for(let i=0;i<this.props.Fetched.photos.length;i++){
+                // let image=document.createElement("img")
+                let image=document.createElement("img")
+                image.setAttribute("src",this.props.Fetched.photos[`${i}`].src.original)
+                image.setAttribute("class",`${styles.FetchedImage}`)
+                imageDiv.appendChild(image)
+            }
+    
+            let selecDivInit=document.getElementsByClassName("blog-content")[0]
+            let selecDiv=this.props.Selected
+            console.log(selecDiv)
+            let images=document.querySelectorAll("#image_div img")
+            for(let j=0;j<images.length;j++){
+                images[j].addEventListener('click',()=>{
+                    // images[j].removeAttribute("class")
+                    let copy=images[j].cloneNode(true)
+                    copy.removeAttribute("class")
+                    copy.setAttribute("class","article-thumb-img")
+                    console.log(copy)
+                    try{
+                        selecDiv.appendChild(copy)
+    
+    
+                    }
+                    catch(e){
+                        selecDivInit.appendChild(copy)
+                    }
+                    
+                })
+            }
+
         }
-        let article=document.getElementsByClassName("blog-content")[0]
-        let images=document.querySelectorAll("img")
-        for(let j=0;j<images.length;j++){
-            images[j].addEventListener('click',()=>{
-                article.appendChild(images[j].cloneNode(true))
-                
-            })
-        }
+     
+      
+    
         console.log(this.props.Fetched)
 
         
     }
     componentDidMount(){
-      
+   
 
         let search_inp=document.getElementsByClassName(`${styles.image_search}`)[0]
         search_inp.addEventListener("keydown",(e)=>{
@@ -93,6 +117,7 @@ class ImagesFet extends Component {
 const mapStateToProps = (state) => {
     return {
         Fetched: state.Edit.FetchList,
+        Selected:state.Edit.Selected
         // images: state.reducerEdit.error,
     
 

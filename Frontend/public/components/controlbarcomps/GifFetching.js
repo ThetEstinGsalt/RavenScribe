@@ -32,15 +32,34 @@ class ImagesFet extends Component {
             imageDiv.appendChild(image)
         }
         let article=document.getElementsByClassName("article")[0]
+        let selecDiv=this.props.Selected
+        let selecDivInit=document.getElementsByClassName("blog-content")[0]
+
+
         let images=document.querySelectorAll(`.${styles.FetchedGif}`)
         for(let j=0;j<images.length;j++){
             images[j].addEventListener('click',()=>{
-                article.appendChild(images[j].cloneNode(true))
+                let copy=images[j].cloneNode(true)
+                copy.removeAttribute("class")
+                copy.setAttribute("class","article-thumb-img")
+                try{
+                    selecDiv.appendChild(copy)
+
+
+                }
+                catch(e){
+                    selecDivInit.appendChild(copy)
+                }
+
+ 
                 
             })
         }
         console.log(this.props.Fetched)
 
+
+
+      
         
     }
     componentDidMount(){
@@ -94,6 +113,8 @@ class ImagesFet extends Component {
 const mapStateToProps = (state) => {
     return {
         Fetched: state.Edit.FetchList,
+        Selected:state.Edit.Selected
+
         // images: state.reducerEdit.error,
     
 

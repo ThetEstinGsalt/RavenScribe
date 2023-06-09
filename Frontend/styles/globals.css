@@ -392,6 +392,11 @@ li {
 
 }
 
+.article-thumb-img{
+  width: inherit;
+  height: auto;
+}
+
 
 
 

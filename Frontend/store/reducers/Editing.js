@@ -13,6 +13,9 @@ const initialState = {
     OptionSelected: null,
     TextOption: null,
     error:null,
+    Selected:null,
+    Font:"blog-content",
+    loading:false
 
 }
 
@@ -34,6 +37,21 @@ const FetchedSuccess = (state, action) => {
     })
 }
 
+const SelectedDiv=(state,action)=>{
+    return updateObject(state,{
+        Selected:action.Selected
+    })
+}
+
+
+const SelectFont=(state,action)=>{
+    return updateObject(state,{
+        Font:action.Font
+    })
+}
+
+
+
 
 const reducerEdit = (state = initialState, action) => {
     switch (action.type) {
@@ -42,6 +60,10 @@ const reducerEdit = (state = initialState, action) => {
 
         case actionTypes.FETCH_FAIL:
             return (FetchedFail(state, action))
+        case actionTypes.SELECTSUCCESS:
+            return (SelectedDiv(state, action))
+        case actionTypes.FONT_SELECT:
+            return (SelectFont(state, action ))
 
     
 

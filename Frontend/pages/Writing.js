@@ -4,13 +4,19 @@
 
 import React, { Component } from 'react'
 import Controlbar from '../public/components/Controlbar';
-
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/Editing'
 class Writing extends Component {
     constructor(props) {
         super(props);
 
         this.heading = this.heading.bind(this);
         this.componentDidMount=this.componentDidMount.bind(this)
+
+        this.selectedDivRedux=(div)=>{
+            this.props.Set(div)
+        }
+
 
 
 
@@ -19,7 +25,7 @@ class Writing extends Component {
 
     state = {
         WriteEdCont:null,
-        active:'blog-content',
+        active:this.props.Font,
         ID_index:0,
         selected:null
 
@@ -123,7 +129,7 @@ class Writing extends Component {
            
            
                   
-                
+    
                     
     //             })
     
@@ -136,9 +142,18 @@ class Writing extends Component {
 
     // }
 
-  
-
+    componentDidUpdate=()=>{
+        console.log("active is")
+        console.log(this.props.Font)
+   
+    }
+    
     componentDidMount=()=>{
+
+
+
+        console.log(`The state from redux printed is ${this.state.active}`)
+
 
 
   
@@ -162,6 +177,10 @@ class Writing extends Component {
       
 
         article.addEventListener('click',(e)=>{
+
+
+
+            this.selectedDivRedux(e.target)
 
             this.setState({
                 WriteEdCont:[e.target.innerHTML,e.target.id],
@@ -256,7 +275,7 @@ class Writing extends Component {
 
             }
    
-            if(document.getElementById(aff.state.WriteEdCont[1])!==null && aff.state.active!=='blog-content'){
+            if(document.getElementById(aff.state.WriteEdCont[1])!==null && aff.props.Font!=='blog-content'){
                 console.log(`state ${aff.state.WriteEdCont}`)
             let extended =document.getElementById(aff.state.WriteEdCont[1])
             let prev=aff.state.WriteEdCont[0]
@@ -310,7 +329,7 @@ class Writing extends Component {
                   
        
                     var current=document.createElement('div');
-                    current.className=self.state.active
+                    current.className=self.props.Font
                     current.innerText=extended.innerHTML[i]
 
 
@@ -375,7 +394,7 @@ class Writing extends Component {
 
 
 
-                    if(self.state.active!=="blog-content"){
+                    if(self.props.Font!=="blog-content"){
                         if(extended.id.includes("b")){
 
                             parent.removeChild(extended)
@@ -437,7 +456,7 @@ class Writing extends Component {
                     }
                             // --------------------cursor_function---------------
                     
-                            let tag=document.getElementsByClassName(self.state.active)
+                            let tag=document.getElementsByClassName(self.props.Font)
                             console.log(tag)
                             let setpos=document.createRange()
         
@@ -486,7 +505,10 @@ class Writing extends Component {
                             content[i].addEventListener("click",function(e){
                                 
                                 try{
+                                    jap.selectedDivRedux(e.target)
+
                                     jap.setState({
+
                                         WriteEdCont:[e.target.innerHTML,content[i].id],
                                         selected:e.target
                                         
@@ -525,6 +547,8 @@ class Writing extends Component {
 
                         article.children[j].addEventListener("click",function(e){
                             console.log(article.children[j])
+                            self.selectedDivRedux(e.target)
+
                             self.setState({
                                 WriteEdCont:[e.target.innerHTML,article.children[j].id],
                                 selected:e.target
@@ -631,7 +655,30 @@ class Writing extends Component {
     }
 }
  
-export default Writing;
+
+
+const mapStateToProps = (state) => {
+    return {
+     
+        Font:state.Edit.Font
+
+
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Set: (div) => dispatch(actions.SelectSuccess(div)),
+        
+  
+
+    }
+}
+
+// export default Writing;
+export default (connect(mapStateToProps,mapDispatchToProps)(Writing))
+
 
 // ---------------------------IMPORTS--------------------------
 

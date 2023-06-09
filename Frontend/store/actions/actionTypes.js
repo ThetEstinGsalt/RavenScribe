@@ -11,5 +11,9 @@ export const FETCH_SUCCESS = "FETCH_SUCCESS"
 
 
 export const FETCH_FAIL = "FETCH_FAIL"
+export const SELECTSUCCESS = "SELECTSUCCESS"
+
+
+export const FONT_SELECT = "FONT_SELECT"
 
 

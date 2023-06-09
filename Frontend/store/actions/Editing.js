@@ -23,6 +23,28 @@ export const FetchedFail = (error) => {
 }
 
 
+export const SelectSuccess= (div) => {
+
+
+    return {
+        type: actionTypes.SELECTSUCCESS,
+        Selected: div,
+
+    }
+}
+
+export const FontSuccess = (Font) => {
+
+
+    return {
+        type: actionTypes.FONT_SELECT,
+        Font: Font,
+
+    }
+}
+
+
+
 
 
 export const fetchImage = (Key, page) => {
