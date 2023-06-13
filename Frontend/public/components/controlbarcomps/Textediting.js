@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import styles from '../../../styles/writing.module.css'
 import * as actions from '../../../store/actions/Editing';
+import TextImage from '../../icons/TextT.png'
+import Quote from '../../icons/Quote.png'
+import Heading from '../../icons/Heading.png'
+import Bold from '../../icons/Bold.png'
+import List from '../../icons/List.png'
 
 import { connect } from 'react-redux';
+import Image from 'next/image'
 
 
 class Textediting extends Component {
@@ -16,11 +22,19 @@ class Textediting extends Component {
         let a =document.getElementsByClassName(`${styles.TexTstyleOption }`)
 
         console.log(a.length)
-        console.log(a.item)
+        console.log(a)
         for(let i=0;i<a.length;i++){
             a[i].addEventListener("click",()=>{
-                // console.log(a[i].children[0].id)
-                this.SetFont(a[i].children[0].id)
+                
+                if(this.props.Font==a[i].children[0].id){
+                    this.SetFont("blog-content")
+                }
+                else{
+                    this.SetFont(a[i].children[0].id)
+
+
+                }
+
      
  
                 
@@ -34,21 +48,46 @@ class Textediting extends Component {
                      <div className={styles.TextEditing}>
 
        
-                        <div className={styles.TexTstyleOption }><div className={styles.CasualTextSelect} id="blog-content">Text</div></div>
+                        <div className={styles.TexTstyleOption }>
+
+                        <Image className={styles.IconImageTexting} src={TextImage} height={500} width={30} id="subHeading" alt="" />
+
+                        </div>
+                
+                        <div className={styles.TexTstyleOption}>
+                        <Image className={styles.IconImageTexting} src={Quote} height={500} width={30} id="quotes" alt="" />
+                        </div>
+
+                        <div className={styles.TexTstyleOption }>
+                        <Image className={styles.IconImageTexting} src={List} height={500} width={30} id="list" alt="" />
+                        </div>
+
+                        <div className={styles.TexTstyleOption }>
+                        <Image className={styles.IconImageTexting} src={Bold} height={500} width={30} id="Bold" alt="" />
+                        </div>
+
+
+                        <div className={styles.TexTstyleOption }>
+                        <Image className={styles.IconImageTexting} src={Heading} height={500} width={30} id="article-heading" alt="" />
+                        </div>
+
+
                       
-                        <div className={styles.TexTstyleOption}><li>Text</li></div>
-
-                        <div className={styles.TexTstyleOption }><div className={ "quotes"+" " + styles.TextQuoteSelect} id="quotes">"Text"</div></div>
-
-
-                        <div className={styles.TexTstyleOption }><div className={styles.HeadingSelect +" "+ "article-heading"} id="article-heading">Text</div></div>
-
-
-                        <div className={styles.TexTstyleOption }><div className={styles.subHeadingSelect +" "+ "subHeading"} id="subHeading">Text</div></div>
                        
             
                   
                     </div>
+                    {/* <div className={styles.ElaboratedTextBars}>
+                        <div className={styles.ElaboratedTextBar}>
+                            Text
+                            </div>
+                        <div className={styles.ElaboratedTextBar}>
+                            Bold
+                            </div>
+                        <div className={styles.ElaboratedTextBar}>
+                            Quote
+                            </div>
+                        </div> */}
                 
             </>
         );

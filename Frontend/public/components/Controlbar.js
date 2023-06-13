@@ -95,7 +95,7 @@ export default class Controlbar extends Component {
                         
 
                     <div className={styles.holderControl}>
-                        <div className={styles.Writing_Options_PC}>
+                        <div className={`${styles.Writing_Options_PC}`+' '+`${styles.Writing_Options_PC_firstChild}`}>
 
               
                         <Image src={Text} alt="" width={30} height={500} className={styles.optionImg}/>

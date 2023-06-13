@@ -5,7 +5,9 @@
     bottom: 0;
     width: 100%;
     /* height: 60%; */
-    height: 53vh;
+    /* The previous one */
+    /* height: 53vh; */
+    height: 13vh;
     z-index: 1000;
     transition: .7s all ease;
   }
@@ -17,6 +19,12 @@
 
 
 }
+.Writing_Options_PC_firstChild{
+  display: none;
+}
+
+
+
 .Writing_Options{
   display: none;
 
@@ -130,15 +138,22 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 70%;
-  margin: auto;
-  height: 27em;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin: auto; */
+  /* height: 27em; */
 }
+
+
+
+
+
 
 .TexTstyleOption{
 
 
-  height: 10em;
-  width: 10em;
+  height: 4em;
+  width: 4em;
   border-radius: 35px;
   border: 3px solid skyblue;
 
@@ -163,72 +178,7 @@
   display: none;
 }
 
-
-
-.HeadingSelect{
-  /* height: 1em;
-  
-  width: 2em; */
-  font-size: 2.5em;
-
-  font-weight: 700;
-  color: #000;
-  text-align: center;
-
-
-  width: 100%;
-  max-width: 1160px;
-  font-family: 'Cabin', sans-serif;
-
-  margin-top: 1em;
-  line-height: 1.6;
-
-
-  margin: 1em 0em;
-  padding: 0;
-}
-
-.subHeadingSelect{
-  /* height: 1em;
-  width: 2em; */
-  display: block;
-  font-size: 1.5em;
-  /* margin-top: 0.83em;
-  margin-bottom: 0.83em;
-  margin-left: 0;
-  margin-right: 0; */
-  font-weight: bold;
-  max-width: 1160px;
-  width: 100%;
-
-
-  margin: 1em 0em;
-  padding: 0;
-}
-
-.TextQuoteSelect{
-  color: black;
-  font-family: 'ShopifySans', Helvetica, Arial, sans-serif;
-
-  margin-top: 1em;
-  text-align: center;
-  font-weight: 700;
-  text-shadow: 3px 4px 11px whitesmoke;
-  margin: 1em 0em;
-  line-height: 1.7;
-}
-
-.CasualTextSelect{
-  width: 100%;
-  max-width: 1160px;
-  font-size: 23px;
-  padding: 1em 4em;
-  line-height: 2;
-  font-weight: 200;
-  margin-bottom: 2em;
-  font-family: sans-serif;
-  margin: 1em 0em;
-  padding: 0;
-
+.IconImageTexting{
+  margin: 0;
 }
 
