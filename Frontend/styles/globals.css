@@ -331,7 +331,7 @@ textarea {
 
 }
 
-.article-heading {
+.articleHeading {
   font-size: 2.5em;
 
   font-weight: 700;
@@ -544,7 +544,7 @@ img {
 }
 
 @media only screen and (max-width:695px) {
-  .article-heading {
+  .articleHeading {
     padding: 0em 1em;
   }
 }
@@ -584,7 +584,7 @@ img {
     font-size: 18px;
   }
 
-  .article-heading {
+  .articleHeading {
     font-size: 1.7em;
   }
 
@@ -614,7 +614,7 @@ img {
 
 @media only screen and (max-width:462px) {
 
-  .article-heading {
+  .articleHeading {
     font-size: 1.3em;
     padding: 0em 2em;
   }
@@ -681,7 +681,7 @@ img {
   }
 
 
-  .article-heading {
+  .articleHeading {
     font-size: 1.3em;
     margin: 0em 0em;
     padding: 2em 0em;
@@ -1436,7 +1436,7 @@ hr {
 
 }
 
-.article-heading {
+.articleHeading {
   font-size: 2.5em;
 
   font-weight: 700;
@@ -1612,7 +1612,7 @@ img {
 }
 
 @media only screen and (max-width:695px) {
-  .article-heading {
+  .articleHeading {
     padding: 0em 1em;
   }
 }
@@ -1644,7 +1644,7 @@ img {
     font-size: 18px;
   }
 
-  .article-heading {
+  .articleHeading {
     font-size: 1.7em;
   }
 
@@ -1682,7 +1682,7 @@ img {
 
 @media only screen and (max-width:462px) {
 
-  .article-heading {
+  .articleHeading {
     font-size: 1.3em;
     padding: 0em 2em;
   }
@@ -1747,7 +1747,7 @@ img {
 
   }
 
-  .article-heading {
+  .articleHeading {
     font-size: 1.3em;
     margin: 0em 0em;
     padding: 2em 0em;
@@ -2369,6 +2369,12 @@ a:hover {
 }
 
 
+.SelectedDiv{
+  /* border: 1px solid lightskyblue; */
+  /* border-radius: 5; */
+  background: whitesmoke;
+  border-radius: 10;
+}
 /* .lastElem{
   visibility: hidden;
 } */

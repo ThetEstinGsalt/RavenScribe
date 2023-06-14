@@ -16,4 +16,6 @@ export const SELECTSUCCESS = "SELECTSUCCESS"
 
 export const FONT_SELECT = "FONT_SELECT"
 
+export const INSERT_SELECT = "INSERT_SELECT"
+
 

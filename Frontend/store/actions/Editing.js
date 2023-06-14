@@ -46,6 +46,19 @@ export const FontSuccess = (Font) => {
 
 
 
+export const INSERTSUCCESS = (Insert) => {
+
+
+    return {
+        type: actionTypes.INSERT_SELECT,
+        Insert: Insert,
+
+    }
+}
+
+
+
+
 
 export const fetchImage = (Key, page) => {
     return dispatch => {

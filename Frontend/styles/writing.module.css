@@ -7,7 +7,7 @@
     /* height: 60%; */
     /* The previous one */
     /* height: 53vh; */
-    height: 13vh;
+    height: 14vh;
     z-index: 1000;
     transition: .7s all ease;
   }
@@ -180,5 +180,39 @@
 
 .IconImageTexting{
   margin: 0;
+}
+
+
+.InsertArrowBox{
+  display: flex;
+  align-items: center;
+  margin:1em 1em; 
+
+
+}
+
+.StraightInsertArrow{
+
+}
+
+.StraightInsertArrow:hover{
+  /* filter: grayscale(.4); */
+  filter: opacity(0.5);
+}
+
+
+.InvertedInsertArrow{
+  transform: rotate(180deg);
+
+}
+
+.InvertedInsertArrow:hover{
+  filter: opacity(0.5);
+
+}
+
+.ParentTextEditing{
+  display: flex;
+  flex-direction: row;
 }
 

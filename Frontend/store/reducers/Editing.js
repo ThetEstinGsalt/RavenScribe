@@ -15,7 +15,9 @@ const initialState = {
     error:null,
     Selected:null,
     Font:"blog-content",
-    loading:false
+    Insert:"Down",
+    loading:false,
+
 
 }
 
@@ -46,7 +48,14 @@ const SelectedDiv=(state,action)=>{
 
 const SelectFont=(state,action)=>{
     return updateObject(state,{
-        Font:action.Font
+        Font:action.Font,
+      
+    })
+}
+
+const SelectInsert=(state,action)=>{
+    return updateObject(state,{
+        Insert:action.Insert
     })
 }
 
@@ -64,6 +73,8 @@ const reducerEdit = (state = initialState, action) => {
             return (SelectedDiv(state, action))
         case actionTypes.FONT_SELECT:
             return (SelectFont(state, action ))
+        case actionTypes.INSERT_SELECT:
+            return (SelectInsert(state, action ))
 
     
 

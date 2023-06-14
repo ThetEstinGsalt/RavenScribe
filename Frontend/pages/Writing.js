@@ -27,7 +27,10 @@ class Writing extends Component {
         ContentElement:null,
         active:this.props.Font,
         ID_index:1,
-        selected:null
+        ID_index_HBQL:1,
+        selected:null,
+        clicked:'blog-content'
+
 
       }
 
@@ -36,15 +39,91 @@ class Writing extends Component {
     // }
 
     componentDidUpdate=()=>{
+        console.log(this.state.selected)
         let article=document.getElementsByClassName("article")[0]
-        let check=document.getElementsByClassName("blog-content")
+        let check=document.getElementsByClassName("article")[0].children
+        let selected=document.getElementById(this.state.selected)
+
+        for(let j=0;j<check.length;j++){
+            check[j].classList.remove("SelectedDiv")
+        }
+
+        if(this.state.selected!==null){
+            let selected=document.getElementById(this.state.selected)
+   
+            selected.classList.add("SelectedDiv")
+
+
+        }
+        else{
+            for(let j=0;j<check.length;j++){
+                check[j].classList.remove("SelectedDiv")
+            }
+        }
+
+
+        
+
+        
+        if(this.props.Font!==this.state.clicked){
+            let NewElem=document.createElement("div")
+
+            if(this.props.Font.includes("-")){
+                NewElem.className=(this.props.Font).toString().split("-")[0]
+
+
+            }
+            else{
+                NewElem.className=this.props.Font
+            }
+
+            NewElem.innerText="Your Heading"
+            NewElem.id=this.state.ID_index_HBQL
+            article.insertBefore(NewElem,selected)
+            // console.log(this.state.selected)
+            let ID_increament=this.state.ID_index_HBQL+1
+
+            this.setState({
+                clicked:this.props.Font,
+                ID_index_HBQL:ID_increament
+            })
+        }
+
+        for(let k=0;k<check.length;k++){
+
+            check[k].onclick=()=>{
+                try{
+                    this.setState({
+                        selected:check[k].id
+                    })
+
+                }
+                catch(e){
+                    console.log("TRY AND CATCH FUNCTION ERROR")
+                }
+          
+            }
+     
+
+
+
+
+        }
+
+
+   
+     
+     
+
+        // let Font=this.props.Font
+
+
 
         
 
 
 
-        console.log(this.props.Font)
-
+     
         
 
        
@@ -59,7 +138,8 @@ class Writing extends Component {
     
     componentDidMount=()=>{
         let article=document.getElementsByClassName("article")[0]
-        let content=document.getElementsByClassName("blog-content")
+        // let content=document.getElementsByClassName("blog-content")
+        let content=document.getElementsByClassName("article")[0].children
 
   
 
@@ -87,9 +167,21 @@ class Writing extends Component {
 
         // ----------------------------------------------
         // Event listeners on article 
-        this.setState({
-            ContentElement: article.cloneNode(true)
-        })
+
+        for(let k=0;k<content.length;k++){
+
+            content[k].onclick=()=>{
+                this.setState({
+                    selected:content[k].id
+                })
+            }
+     
+
+
+
+
+        }
+     
             article.addEventListener('input',(e)=>{
                
 
@@ -105,12 +197,10 @@ class Writing extends Component {
                             if(article.children[j].id==article.children[j-1].id){
                                 if(article.children[j].innerText.trim() !==""){
                                     article.children[j].id=`F${article.children[j].id}`
-                                    article.children[j-1].id=`B${article.children[j-1].id}`
-                                    this.setState({
-                                        ContentElement:document.getElementsByClassName("article")[0].cloneNode(true)
-                                    })
-                        
                                     
+                             
+                                    article.children[j-1].id=`B${article.children[j-1].id}`
+                           
     
                                 }
                                 else{
@@ -123,12 +213,25 @@ class Writing extends Component {
                            
                                     
                                     article.children[j].id= idInd
-                                    this.setState({
-                                        ContentElement:document.getElementsByClassName("article")[0].cloneNode(true)
-                                    })
-                        
+
+                              
     
-    
+                                }
+                                this.setState({
+                                    selected:null
+                                })
+                                for(let k=0;k<content.length;k++){
+
+                                    content[k].onclick=()=>{
+                                        this.setState({
+                                            selected:content[k].id
+                                        })
+                                    }
+                             
+                    
+                    
+                    
+                    
                                 }
                              
 
@@ -136,91 +239,18 @@ class Writing extends Component {
                                 
                                 
                             }
+
                         }}
+
     
                 }
                 else{
+
                 
                  
                 
       
                     
-                        for(let k=0;k<article.children.length;k++){
-          
-                                
-                           
-                            if((article.children[k].innerText!==this.state.ContentElement.children[k].innerText) && this.props.Font!=='blog-content' && article.children[k].className=='blog-content'){
-                                
-                                console.log(article.children[k].id)
-                                
-                                for(let i=0;i<article.children[k].innerText.length;i++){
-                                    if(article.children[k].innerText[i]!== this.state.ContentElement.children[k].innerText[i]){
-                                    
-                                        let original_clone =article.children[k].cloneNode(true)
-                                        let original =article.children[k]
-                                        // console.log(article.children[k].innerText[i]
-                                        let NewTextElem = document.createElement("div")
-                                        let FirstSplitElem = document.createElement("div")
-                                        let SecondSplitElem = document.createElement("div")
-
-                                        NewTextElem.className=this.props.Font
-                                        NewTextElem.innerText=article.children[k].innerText[i]
-
-                                        let ElemInnerText = article.children[k].innerText
-
-                                        let FirstSplitText = ElemInnerText.substring(0,i)
-                                        let SecondSplitText = ElemInnerText.substring(i+1)
-
-                                        
-                                        if(FirstSplitText.trim().length!==0){
-                                            FirstSplitElem.className = original.className
-                                            FirstSplitElem.id = `B${original.id}`
-                                            FirstSplitElem.innerText= FirstSplitText
-                                            article.insertBefore(FirstSplitElem,original)
-
-                                        }
-
-                                        article.insertBefore(NewTextElem,original)
-
-
-                                     
-                                        if(SecondSplitText.trim().length!==0){
-                                            SecondSplitElem.className = original.className
-                                            SecondSplitElem.id= `F${original.id}`
-                                            SecondSplitElem.innerText= SecondSplitText
-
-                                            article.insertBefore(SecondSplitElem,original);
-                                            
-                                         
-
-
-                                        }
-
-
-
-                               
-                              
-                                        article.removeChild(original)
-
-
-                                      
-                                        
-                                        // this.props.Font='blog-content'
-                                        break
-
-                                    }
-                                }
-                                
-
-                                this.setState({
-                                    ContentElement:document.getElementsByClassName("article")[0].cloneNode(true)
-                                })
-
-                                break
-        
-                            }
-                        }
-                
             
                          }
 
@@ -263,7 +293,7 @@ class Writing extends Component {
             <div className="article"   contentEditable="true"  >
 
                 <div className='blog-content' id="1"  contentEditable="true">
-                This is part 1 This is part 2 This is part 3
+                Dispatch on next.js redux vesion 2.2.02.vs
                 </div>
 
 
@@ -287,7 +317,9 @@ class Writing extends Component {
 const mapStateToProps = (state) => {
     return {
      
-        Font:state.Edit.Font
+        Font:state.Edit.Font,
+        Insert:state.Edit.Insert,
+
 
 
     }
