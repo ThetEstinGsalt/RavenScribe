@@ -7,7 +7,7 @@
     /* height: 60%; */
     /* The previous one */
     /* height: 53vh; */
-    height: 14vh;
+    height: 90vh;
     z-index: 1000;
     transition: .7s all ease;
   }
@@ -216,3 +216,6 @@
   flex-direction: row;
 }
 
+.Wastebin{
+  
+}

@@ -14,8 +14,10 @@ const initialState = {
     TextOption: null,
     error:null,
     Selected:null,
-    Font:"blog-content",
+    // Font:null,
+    Font:"blogContent",
     Insert:"Down",
+    Delete:0,
     loading:false,
 
 
@@ -58,6 +60,11 @@ const SelectInsert=(state,action)=>{
         Insert:action.Insert
     })
 }
+const SelectDelete=(state,action)=>{
+    return updateObject(state,{
+        Delete:action.Delete
+    })
+}
 
 
 
@@ -75,6 +82,8 @@ const reducerEdit = (state = initialState, action) => {
             return (SelectFont(state, action ))
         case actionTypes.INSERT_SELECT:
             return (SelectInsert(state, action ))
+        case actionTypes.DELETE_SELECT:
+            return (SelectDelete(state, action ))
 
     
 

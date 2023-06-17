@@ -29,7 +29,8 @@ class Writing extends Component {
         ID_index:1,
         ID_index_HBQL:1,
         selected:null,
-        clicked:'blog-content'
+        clicked:'blogContent',
+        Delete:0,
 
 
       }
@@ -39,19 +40,32 @@ class Writing extends Component {
     // }
 
     componentDidUpdate=()=>{
-        console.log(this.state.selected)
+
+        console.log(this.props.Insert)
+
         let article=document.getElementsByClassName("article")[0]
         let check=document.getElementsByClassName("article")[0].children
         let selected=document.getElementById(this.state.selected)
+              
 
         for(let j=0;j<check.length;j++){
             check[j].classList.remove("SelectedDiv")
         }
 
+        
+
         if(this.state.selected!==null){
             let selected=document.getElementById(this.state.selected)
-   
-            selected.classList.add("SelectedDiv")
+            try{
+                selected.classList.add("SelectedDiv")
+
+
+            }
+            catch(e){
+                console.log(
+                    "TRY CATCH ERROR STATE IS UNDEFINED"
+                )
+            }
 
 
         }
@@ -77,17 +91,36 @@ class Writing extends Component {
                 NewElem.className=this.props.Font
             }
 
-            NewElem.innerText="Your Heading"
-            NewElem.id=this.state.ID_index_HBQL
-            article.insertBefore(NewElem,selected)
-            // console.log(this.state.selected)
-            let ID_increament=this.state.ID_index_HBQL+1
 
+            if(this.props.Insert=="Up"){
+                if(NewElem.className=='list'){
+                    
+                }
+                else{
+                    
+                }
+                NewElem.innerText="Your Heading"
+                NewElem.id=`${this.state.ID_index_HBQL}DD`
+                article.insertBefore(NewElem,selected)
+                // console.log(this.state.selected)
+                
+
+            }
+            else{
+                NewElem.innerText="Your Heading"
+                NewElem.id=`${this.state.ID_index_HBQL}DD`
+                article.insertBefore(NewElem,selected.nextSibling)
+
+            }
+          
+            let ID_increament=this.state.ID_index_HBQL+1
             this.setState({
                 clicked:this.props.Font,
                 ID_index_HBQL:ID_increament
             })
         }
+
+
 
         for(let k=0;k<check.length;k++){
 
@@ -109,6 +142,8 @@ class Writing extends Component {
 
 
         }
+
+   
 
 
    
@@ -140,6 +175,42 @@ class Writing extends Component {
         let article=document.getElementsByClassName("article")[0]
         // let content=document.getElementsByClassName("blog-content")
         let content=document.getElementsByClassName("article")[0].children
+
+        document.getElementById("Bin").addEventListener("click",()=>{
+            if(this.state.selected!==null && this.state.selected!==undefined && article.children.length!==1){
+                // this.setState({
+                //     Delete:this.props.Delete
+                // })
+          
+                console.log(document.getElementById("1"))
+    
+                let del= document.getElementById(this.state.selected)
+                console.log(this.state.selected)
+                console.log(del)
+                // console.log(del.parentElement)
+                del.parentElement.removeChild(del)
+                for(let k=0;k<content.length;k++){
+
+                    content[k].onclick=()=>{
+                        this.setState({
+                            selected:content[k].id
+                        })
+                    }
+             
+        
+        
+        
+        
+                }
+           
+           
+                
+            }
+    
+            
+            
+        })
+  
 
   
 
@@ -185,7 +256,13 @@ class Writing extends Component {
             article.addEventListener('input',(e)=>{
                
 
-                if((e.inputType=="insertParagraph" || e.data == null) && this.props.Font=="blog-content"){
+                if(e.inputType=="insertParagraph" || e.data == null){
+
+                    let spans=document.getElementsByTagName("span")
+                    for(let i=0;i<spans.length;i++){
+                        spans[i].style=spans[i].parentElement.style
+                        // spans[i].className=spans[i].parentElement.className
+                    }
 
 
     
@@ -260,11 +337,22 @@ class Writing extends Component {
        
 
 
-                if(article.firstChild.innerText.trim().length==0){
-                    article.firstChild.innerText="~"
+                // if(article.firstChild.innerText.trim().length==0){
+                //     article.firstChild.innerText="~"
+             
+             
+                // }
+
+                if(article.children.length==0){
+                    let content=document.createElement("div")
+                    content.className="blogContent"
+                    content.id="1"
+                    article.appendChild(content)
+
              
              
                 }
+                
 
     
     
@@ -292,10 +380,11 @@ class Writing extends Component {
     
             <div className="article"   contentEditable="true"  >
 
-                <div className='blog-content' id="1"  contentEditable="true">
+                <div className='blogContent' id="1"  contentEditable="true">
                 Dispatch on next.js redux vesion 2.2.02.vs
                 </div>
 
+               
 
           
               
@@ -319,6 +408,8 @@ const mapStateToProps = (state) => {
      
         Font:state.Edit.Font,
         Insert:state.Edit.Insert,
+        Delete:state.Edit.Delete,
+
 
 
 

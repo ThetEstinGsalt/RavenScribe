@@ -355,24 +355,13 @@ textarea {
   margin: 0em 1em;
 }
 
-.quotes {
-  font-family: 'ShopifySans', Helvetica, Arial, sans-serif;
-  color: lightskyblue;
-  margin-top: 1em;
-  text-align: center;
-  font-weight: 700;
-  text-shadow: 3px 4px 11px whitesmoke;
-  margin: 1em 0em;
-  line-height: 1.7;
 
-
-}
 
 li {
   margin-top: .75em;
 }
 
-.blog-content {
+.blogContent {
   /* width: 100%;
   max-width: 1160px;
   font-size: 23px;
@@ -517,11 +506,19 @@ img {
 }
 
 @media only screen and (max-width:1078px) {
-  .blog-content {
+  .blogContent {
 
     padding: 1em 1.2em;
 
   }
+
+
+
+  .quotes{
+    padding: 1em 1.2em;
+
+  }
+
 
   .article {
 
@@ -538,7 +535,12 @@ img {
 }
 
 @media only screen and (max-width:737px) {
-  .blog-content {
+  .quotes{
+    font-size: 20px;
+
+
+  }
+  .blogContent {
     font-size: 20px;
   }
 }
@@ -556,8 +558,16 @@ img {
 
 @media only screen and (max-width:590px) {
 
-  .blog-content {
+  .blogContent {
     font-size: 18px;
+    padding: 1em 0.3em;
+
+  }
+  .quotes{
+    font-size: 18px;
+    padding: 1em 0.3em;
+
+
   }
 
   .blog-heading {
@@ -566,10 +576,7 @@ img {
     padding: 0em 1em;
   }
 
-  .blog-content {
-
-    padding: 1em 0.3em;
-  }
+ 
 
   .subHeading {
 
@@ -658,17 +665,31 @@ img {
 }
 
 @media only screen and (max-width:456px) {
-  .blog-content {
+  .blogContent {
     font-size: 14px;
     line-height: 1.79;
+
+  }
+  .quotes{
+    font-size: 14px;
+    line-height: 1.79;
+
 
   }
 }
 
 @media only screen and (max-width:354px) {
-  .blog-content {
+  .blogContent {
     padding: 4em 0em;
     font-size: 13.2px;
+
+
+  }
+  .quotes{
+    padding: 4em 0em;
+    font-size: 13.2px;
+
+
 
 
   }
@@ -1473,7 +1494,7 @@ hr {
 
 }
 
-.blog-content {
+.blogContent {
   width: 100%;
   max-width: 1160px;
   font-size: 23px;
@@ -1585,9 +1606,14 @@ img {
 }
 
 @media only screen and (max-width:1078px) {
-  .blog-content {
+  .blogContent {
 
     padding: 1em 1.2em;
+
+  }
+  .quotes{
+    padding: 1em 1.2em;
+
 
   }
 
@@ -1606,8 +1632,14 @@ img {
 }
 
 @media only screen and (max-width:737px) {
-  .blog-content {
+  .blogContent {
     font-size: 20px;
+  
+  }
+  .quotes{
+    font-size: 20px;
+
+
   }
 }
 
@@ -1624,8 +1656,18 @@ img {
 
 @media only screen and (max-width:590px) {
 
-  .blog-content {
+  .blogContent {
     font-size: 18px;
+    padding: 1em 0.3em;
+
+  }
+
+  .quotes{
+    font-size: 18px;
+    padding: 1em 0.3em;
+
+
+
   }
 
   .blog-heading {
@@ -1634,10 +1676,6 @@ img {
     padding: 0em 1em;
   }
 
-  .blog-content {
-
-    padding: 1em 0.3em;
-  }
 
   .concept {
     padding: 1em 1.5em;
@@ -1726,7 +1764,12 @@ img {
 }
 
 @media only screen and (max-width:456px) {
-  .blog-content {
+  .blogContent {
+    font-size: 14px;
+    line-height: 1.79;
+
+  }
+  .quotes{
     font-size: 14px;
     line-height: 1.79;
 
@@ -1734,9 +1777,16 @@ img {
 }
 
 @media only screen and (max-width:354px) {
-  .blog-content {
+  .blogContent {
     padding: 4em 0em;
     font-size: 13.2px;
+
+  }
+  .quotes{
+    padding: 4em 0em;
+    font-size: 13.2px;
+
+   
 
   }
 

@@ -7,6 +7,7 @@ import Heading from '../../icons/Heading.png'
 import Bold from '../../icons/Bold.png'
 import List from '../../icons/List.png'
 import InsertArrow from '../../icons/InsertArrow.png'
+import WasteBin from '../../icons/wastebin.png'
 import { connect } from 'react-redux';
 import Image from 'next/image'
 
@@ -20,12 +21,17 @@ class Textediting extends Component {
         this.SetInsert=(insert)=>{
             this.props.Insert(insert)
         }
+        this.Delete=(Delete)=>{
+            this.props.Delete(Delete)
+        }
  
     }
     state={
         Index:0,
+        Delete:0,
     }
     componentDidMount(){
+ 
      
         let a =document.getElementsByClassName(`${styles.TexTstyleOption }`)
         
@@ -61,12 +67,22 @@ class Textediting extends Component {
         }
 
         let b =document.getElementsByClassName(`${styles.InsertArrowBox}`)[0]
+
         for(let j=0; j<b.children.length;j++){
             b.children[j].addEventListener("click",()=>{
                 this.SetInsert(b.children[j].id)
+                console.log("CHACHA worked!!")
             })
 
         }
+        document.getElementById("Bin").addEventListener("click",()=>{
+            let increment=this.state.Delete + 1
+            this.setState({
+                Delete:increment
+            })
+
+            this.Delete(this.state.Delete)
+        })
 
     }
     render() {
@@ -77,15 +93,18 @@ class Textediting extends Component {
 
 
     
-                     <div className={styles.TextEditing}>
+                    <div className={styles.TextEditing}>
 
        
-                        {/* <div className={styles.TexTstyleOption }>
+                        <div className={styles.TexTstyleOption }>
 
-                        <Image className={styles.IconImageTexting} src={TextImage} height={500} width={30} id="subHeading" alt="" />
+                        <Image className={styles.IconImageTexting} src={TextImage} height={500} width={30} id="blogContent" alt="" />
 
-                        </div> */}
+                        </div>
                 
+                        {/* <div className={styles.TexTstyleOption}>
+                        <Image className={styles.IconImageTexting} src={Quote} height={500} width={30} id="quotes" alt="" />
+                        </div> */}
                         <div className={styles.TexTstyleOption}>
                         <Image className={styles.IconImageTexting} src={Quote} height={500} width={30} id="quotes" alt="" />
                         </div>
@@ -109,19 +128,23 @@ class Textediting extends Component {
                     </div>
                             
                     <div className={styles.InsertArrowBox}>
+
+                        <Image src={WasteBin} height={500} width={30}  alt="" className={styles.Wastebin} id='Bin' />
+                        
                         <Image src={InsertArrow} height={500} width={30} className={styles.InvertedInsertArrow} alt="" id="Down" />
 
                         
-                        <Image src={InsertArrow} height={500} width={30}  alt="" className={styles.StraightInsertArrow}id='Up'/>
+                        <Image src={InsertArrow} height={500} width={30}  alt="" className={styles.StraightInsertArrow} id='Up'/>
                         
+         
                         
                             
-                        </div>
+                    </div>
 
 
                       
 
-                    </div>
+                </div>
                     {/* <div className={styles.ElaboratedTextBars}>
                         <div className={styles.ElaboratedTextBar}>
                             Text
@@ -154,7 +177,9 @@ const mapStateToProps = (state) => {
         Font:state.Edit.Font,
         Font_Index:state.Edit.Font,
 
-        Insert:state.Edit.Insert
+        Insert:state.Edit.Insert,
+
+        Delete:state.Edit.Delete,
 
 
     }
@@ -164,7 +189,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         Fontset: (Font) => dispatch(actions.FontSuccess(Font)),
 
-        Insert: (Insert) => dispatch(actions.INSERTSUCCESS(Insert))
+        Insert: (Insert) => dispatch(actions.INSERTSUCCESS(Insert)),
+
+        Delete: (Delete) => dispatch(actions.DELETESUCCESS(Delete))
 
     }
 }

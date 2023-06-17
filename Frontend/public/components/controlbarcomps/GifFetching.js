@@ -18,6 +18,7 @@ class ImagesFet extends Component {
             this.props.Gif(key)
         }
     }
+    
     componentDidUpdate(){
         console.log(this.props.Fetched)
 

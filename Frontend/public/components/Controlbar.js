@@ -8,7 +8,8 @@ import Wiki from './controlbarcomps/Wiki'
 import Gifs from './controlbarcomps/GifFetching'
 import ImagesFet from './controlbarcomps/ImagesFet'
 import Textediting from './controlbarcomps/Textediting'
-
+import LinkIcon from '../icons/link.png'
+import Link from './controlbarcomps/Link'
 import styles from '../../styles/writing.module.css'
 import Image from 'next/image'
 
@@ -19,6 +20,7 @@ export default class Controlbar extends Component {
             Wiki:false,
             Image:false,
             Gif:false,
+            Link:false,
         }
     }
     // state={
@@ -31,12 +33,14 @@ export default class Controlbar extends Component {
         let Gif=document.getElementById("Gif")
         let Image=document.getElementById("Image")
         let Wiki=document.getElementById("Wiki")
+        let Link =document.getElementById("Link")
 
         Gif.addEventListener('click',()=>{
             this.setState({
                 Wiki:false,
                 Image:false,
                 Gif:true,
+                Link:false
             })
         })
         Image.addEventListener('click',()=>{
@@ -44,6 +48,7 @@ export default class Controlbar extends Component {
                 Wiki:false,
                 Image:true,
                 Gif:false,
+                Link:false,
             })
         })
         Wiki.addEventListener('click',()=>{
@@ -51,6 +56,16 @@ export default class Controlbar extends Component {
                 Wiki:true,
                 Image:false,
                 Gif:false,
+                Link:false
+            })
+        })
+
+        Link.addEventListener('click',()=>{
+            this.setState({
+                Wiki:false,
+                Image:false,
+                Gif:false,
+                Link:true,
             })
         })
 
@@ -108,6 +123,7 @@ export default class Controlbar extends Component {
                         <Image src={image} alt="" width={30} height={500} className={styles.optionImg} />
                         <Image src={Text} alt="" width={30} height={500} className={styles.optionImg}/>
                         <Image src={wiki} alt="" width={30} height={500} className={styles.optionImg} />
+     
                         
                             
 
@@ -128,6 +144,7 @@ export default class Controlbar extends Component {
                             <Image src={image} alt="" id="Image" width={30} height={500} className={styles.optionImg} />
                             <Image src={wiki} alt="" id="Wiki" width={30} height={500} className={styles.optionImg} />
                             <Image src={Gif} alt=""  id="Gif"width={30} height={500} className={styles.optionImg} />
+                            <Image src={LinkIcon} alt=""  id="Link"width={30} height={500} className={styles.optionImg} />
 
 
 
@@ -137,6 +154,7 @@ export default class Controlbar extends Component {
                         {this.state.Image && <ImagesFet/>}
                         {this.state.Wiki && <Wiki/>}
                         {this.state.Gif && <Gifs/>}
+                        {this.state.Link && <Link/>}
 
                     </div>
 

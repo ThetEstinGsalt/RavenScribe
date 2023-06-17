@@ -56,6 +56,16 @@ export const INSERTSUCCESS = (Insert) => {
     }
 }
 
+export const DELETESUCCESS = (DELETE) => {
+
+
+    return {
+        type: actionTypes.DELETE_SELECT,
+        Delete: DELETE,
+
+    }
+}
+
 
 
 
