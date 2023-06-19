@@ -19,6 +19,7 @@ const initialState = {
     Insert:"Down",
     Delete:0,
     loading:false,
+    CatFetch:null,
 
 
 }
@@ -36,6 +37,7 @@ const FetchedSuccess = (state, action) => {
 
     return updateObject(state, {
         FetchList: action.list,
+        CatFetch:action.Cat,
         error: null,
  
     })

@@ -7,7 +7,7 @@
     /* height: 60%; */
     /* The previous one */
     /* height: 53vh; */
-    height: 90vh;
+    height: 40vh;
     z-index: 1000;
     transition: .7s all ease;
   }
@@ -218,4 +218,11 @@
 
 .Wastebin{
   
+}
+
+.ParentDiv{
+  width: 100%;
+  max-width: 1160px;
+  align-items: center;
+  text-align: center;
 }

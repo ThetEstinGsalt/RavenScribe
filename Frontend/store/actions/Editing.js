@@ -5,12 +5,13 @@ axios.defaults.xsrfCookieName = "csrftoken";
 
 
 
-export const FetchedSuccess= (list) => {
+export const FetchedSuccess= (list,Cat) => {
 
 
     return {
         type: actionTypes.FETCH_SUCCESS,
         list: list,
+        Cat:Cat,
 
     }
 }
@@ -85,7 +86,7 @@ export const fetchImage = (Key, page) => {
         .then((res) => {
             const list = res.data;
 
-            dispatch(FetchedSuccess(list));
+            dispatch(FetchedSuccess(list,"I"));
    
         })
         .catch((error) => {
@@ -117,7 +118,7 @@ export const fetchGif = (Key) => {
             .then((res) => {
 
                 
-                dispatch(FetchedSuccess(res.data));
+                dispatch(FetchedSuccess(res.data,"G"));
        
             })
             .catch((error) => {

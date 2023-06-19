@@ -31,6 +31,7 @@ class Writing extends Component {
         selected:null,
         clicked:'blogContent',
         Delete:0,
+        Med_selection:null,
 
 
       }
@@ -41,7 +42,7 @@ class Writing extends Component {
 
     componentDidUpdate=()=>{
 
-        console.log(this.props.Insert)
+
 
         let article=document.getElementsByClassName("article")[0]
         let check=document.getElementsByClassName("article")[0].children
@@ -109,7 +110,14 @@ class Writing extends Component {
             else{
                 NewElem.innerText="Your Heading"
                 NewElem.id=`${this.state.ID_index_HBQL}DD`
-                article.insertBefore(NewElem,selected.nextSibling)
+                try{
+                    article.insertBefore(NewElem,selected.nextSibling)
+
+
+                }
+                catch(e){
+                    article.appendChild(NewElem)
+                }
 
             }
           
@@ -118,6 +126,49 @@ class Writing extends Component {
                 clicked:this.props.Font,
                 ID_index_HBQL:ID_increament
             })
+        }
+
+        if(this.props.Selection!==this.state.Med_selection){
+            
+           
+            console.log(this.props.Selection)
+            console.log(this.props.Selection.length)
+            this.setState({
+                Med_selection:this.props.Selection
+            },()=>{
+                if(this.props.Insert=="Up"){
+               
+                    let NewMedElem=this.props.Selection
+                    NewMedElem.id=`${this.state.ID_index_HBQL}II`
+                    article.insertBefore(this.props.Selection,selected)
+                    // console.log(this.state.selected)
+                    
+    
+                }
+                else{
+                    let NewMedElem=this.props.Selection
+
+                    NewMedElem.id=`${this.state.ID_index_HBQL}II`
+                    try{
+                        article.insertBefore(NewMedElem,selected.nextSibling)
+
+
+                    }
+                    catch(e){
+                        article.appendChild(NewMedElem)
+                    }
+    
+                }
+                let ID_increament=this.state.ID_index_HBQL+1
+
+                this.setState({
+                    clicked:this.props.Font,
+                    ID_index_HBQL:ID_increament
+                })
+              
+
+            })
+
         }
 
 
@@ -409,6 +460,7 @@ const mapStateToProps = (state) => {
         Font:state.Edit.Font,
         Insert:state.Edit.Insert,
         Delete:state.Edit.Delete,
+        Selection:state.Edit.Selected
 
 
 
