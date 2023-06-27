@@ -6,6 +6,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -354,7 +355,13 @@ textarea {
   align-items: center;
   margin: 0em 1em;
 }
+.list{
 
+    width: 70em;
+    height: auto;
+    margin: 3em 19e;
+    padding: 1em 6em;
+}
 
 
 li {
@@ -515,7 +522,7 @@ img {
 
 
   .quotes{
-    padding: 1em 1.2em;
+    padding: 1em 0.2em;
 
   }
 
@@ -1482,14 +1489,18 @@ hr {
 }
 
 .quotes {
-  font-family: 'ShopifySans', Helvetica, Arial, sans-serif;
-  color: lightskyblue;
-  margin-top: 1em;
+  /* font-family: 'Wendy One', sans-serif; */
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  color: dimgray;
+  /* margin-top: 1em; */
   text-align: center;
   font-weight: 700;
   text-shadow: 3px 4px 11px whitesmoke;
-  margin: 1em 0em;
+  margin: 0em 0em;
   line-height: 1.7;
+  font-size: 1.8em;
+  width: 70%;
+  padding: 0em 1em;
 
 
 }
@@ -1605,14 +1616,14 @@ img {
 
 }
 
-@media only screen and (max-width:1078px) {
+/* @media only screen and (max-width:1078px) {
   .blogContent {
 
     padding: 1em 1.2em;
 
   }
   .quotes{
-    padding: 1em 1.2em;
+    padding: 1em 0.2em;
 
 
   }
@@ -1629,7 +1640,7 @@ img {
 
   }
 
-}
+} */
 
 @media only screen and (max-width:737px) {
   .blogContent {

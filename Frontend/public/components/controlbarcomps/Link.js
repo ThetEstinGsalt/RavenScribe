@@ -29,7 +29,9 @@ class Link extends Component {
                     NewElem.src="https://www.youtube.com/embed/hBDwXipHykQ"
 
                     div.appendChild(NewElem)
-                    div.className=`${styles.ParentDiv}`
+                    // div.className=`${styles.ParentDiv}`
+                    div.className="blogContent"
+                    div.style.textAlign="center"
                     // let selected=<iframe width="560" height="315" src="https://www.youtube.com/embed/hBDwXipHykQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
                     this.props.Select(div)
@@ -39,6 +41,7 @@ class Link extends Component {
                     let link=inpBar.value
                     let NewElem=document.createElement("img")
                     NewElem.src = link
+                    NewElem.className="blogContent"
                     this.props.Select(NewElem)
     
                 }

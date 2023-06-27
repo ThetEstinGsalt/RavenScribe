@@ -48,6 +48,11 @@ class Writing extends Component {
         let check=document.getElementsByClassName("article")[0].children
         let selected=document.getElementById(this.state.selected)
               
+        // let spans= document.getElementsByTagName("span")
+
+        // Array.from(spans).forEach(element => {
+        //     element.style=element.parentElement.style
+        // });
 
         for(let j=0;j<check.length;j++){
             check[j].classList.remove("SelectedDiv")
@@ -95,20 +100,45 @@ class Writing extends Component {
 
             if(this.props.Insert=="Up"){
                 if(NewElem.className=='list'){
+                    let ListElem=document.createElement("li")
+                    ListElem.innerText="List Item"
+                    let UnorderedList=document.createElement("ul")
+                    UnorderedList.appendChild(ListElem)
+                    // UnorderedList.innerHTML=ListElem
+                    NewElem.appendChild(UnorderedList)
+
                     
+                    // NewElem.innerHTML="<ul><li>Something<li/><ul/>"
+                    NewElem.id=`${this.state.ID_index_HBQL}DD`
+                    article.insertBefore(NewElem,selected)
                 }
                 else{
+                    NewElem.innerText="Your Heading"
+                    NewElem.id=`${this.state.ID_index_HBQL}DD`
+                    article.insertBefore(NewElem,selected)
                     
                 }
-                NewElem.innerText="Your Heading"
-                NewElem.id=`${this.state.ID_index_HBQL}DD`
-                article.insertBefore(NewElem,selected)
+   
                 // console.log(this.state.selected)
                 
 
             }
             else{
-                NewElem.innerText="Your Heading"
+                if(NewElem.className=='list'){
+                    let ListElem=document.createElement("li")
+                    ListElem.innerText="List Item"
+                    let UnorderedList=document.createElement("ul")
+                    UnorderedList.appendChild(ListElem)
+                    // UnorderedList.innerHTML=ListElem
+                    NewElem.appendChild(UnorderedList)
+                    
+
+                }
+                else{
+                    NewElem.innerText="Your Heading"
+
+
+                }
                 NewElem.id=`${this.state.ID_index_HBQL}DD`
                 try{
                     article.insertBefore(NewElem,selected.nextSibling)
@@ -175,8 +205,21 @@ class Writing extends Component {
 
         for(let k=0;k<check.length;k++){
 
-            check[k].onclick=()=>{
+
+
+            check[k].onclick=()=>{  
+        
+                // check[k+1].setAttribute("contenteditable",false)
+
+
+
                 try{
+                    check[k].setAttribute("contenteditable",true)
+                    if(check[k+1]!==undefined && check[k+1]!==null){
+                        check[k+1].setAttribute("contenteditable",false)
+    
+    
+                    }
                     this.setState({
                         selected:check[k].id
                     })
@@ -243,6 +286,12 @@ class Writing extends Component {
                 for(let k=0;k<content.length;k++){
 
                     content[k].onclick=()=>{
+                        content[k].setAttribute("contenteditable",true)
+                        if(content[k+1]!==undefined && content[k+1]!==null){
+                            content[k+1].setAttribute("contenteditable",false)
+
+
+                        }
                         this.setState({
                             selected:content[k].id
                         })
@@ -291,8 +340,15 @@ class Writing extends Component {
         // Event listeners on article 
 
         for(let k=0;k<content.length;k++){
+   
 
             content[k].onclick=()=>{
+                content[k].setAttribute("contenteditable",true)
+                if(content[k+1]!==undefined && content[k+1]!==null){
+                    content[k+1].setAttribute("contenteditable",false)
+
+
+                }
                 this.setState({
                     selected:content[k].id
                 })
@@ -311,7 +367,13 @@ class Writing extends Component {
 
                     let spans=document.getElementsByTagName("span")
                     for(let i=0;i<spans.length;i++){
-                        spans[i].style=spans[i].parentElement.style
+                        console.log(spans[i].style)
+                        spans[i].style= getComputedStyle(spans[i].parentElement)
+                        spans[i].style.fontFamily=getComputedStyle(spans[i].parentElement).fontFamily
+         
+                  
+              
+
                         // spans[i].className=spans[i].parentElement.className
                     }
 
@@ -350,7 +412,11 @@ class Writing extends Component {
                                 })
                                 for(let k=0;k<content.length;k++){
 
+
                                     content[k].onclick=()=>{
+                                        content[k].setAttribute("contenteditable",true)
+                                        
+                                        content[k+1].setAttribute("contenteditable",false)
                                         this.setState({
                                             selected:content[k].id
                                         })

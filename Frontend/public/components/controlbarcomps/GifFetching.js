@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Head from 'next/head'
 import axios from 'axios';
 
-class ImagesFet extends Component {
+class GifFetching extends Component {
     constructor(props){
         super(props);
         this.Select=(div)=>{
@@ -24,67 +24,32 @@ class ImagesFet extends Component {
     }
 
     componentDidUpdate(){
-        //    let imageDiv=document.getElementById("Gif_div")
-        // console.log(this.props.Fetched)
 
-        // imageDiv.onscroll=function(){
-
-        //     if ((imageDiv.offsetHeight + imageDiv.scrollTop) >= imageDiv.scrollHeight) {
-
-
-        //     for(let i=imageDiv.childElementCount;i<i+4;i++){
-        //         // let image=document.createElement("img")
-        //         let image=document.createElement("img")
-        //         image.setAttribute("src",this.state.Fetched.data[`${i}`].images.original.url)
-        //         image.setAttribute("class",`${styles.FetchedGif}`)
-        //         imageDiv.appendChild(image)
-        //     }
-
-
-
-                
-        //     }
-        // }
-
-
-        // && this.state.index==this.state.j
         if(this.props.Type=="G" ){
             let imageDiv=document.getElementById("Gif_div")
 
 
-            // function loadMore(imageDiv,thisprops){
-            //     console.log(thisprops)
-            //     if ((imageDiv.offsetHeight + imageDiv.scrollTop) >= imageDiv.scrollHeight) {
-            //         console.log("You have scrolled down the top")
-    
-            //         // for(let i=imageDiv.childElementCount;i<i+4;i++){
-            //         //     // let image=document.createElement("img")
-            //         //     let image=document.createElement("img")
-            //         //     console.log(thisprops.data[`${i}`].images)
-            //         //     image.setAttribute("src",thisprops.data[`${i}`].images.original.url)
-            //         //     image.setAttribute("class",`${styles.FetchedGif}`)
-            //         //     imageDiv.appendChild(image)
-            //         // }
-        
-        
-        
-                        
-            //         }
-            // }
-    
-            // imageDiv.onscroll=loadMore(imageDiv,this.props.Fetched)
-
-
-            // let imageDiv=document.getElementById("Gif_div")
             imageDiv.innerHTML=""
 
 
             for(let i=0;i<4;i++){
                 // let image=document.createElement("img")
                 let image=document.createElement("img")
-                image.setAttribute("src",this.props.Fetched.data[`${i}`].images.original.url)
+                image.setAttribute("src",this.props.Fetched.data[`${i}`].images.preview_gif.url)
                 image.setAttribute("class",`${styles.FetchedGif}`)
+                image.setAttribute("id",i)
                 imageDiv.appendChild(image)
+                image.addEventListener('click',()=>{
+                    let copy=document.createElement("img")
+                    copy.setAttribute("src",this.props.Fetched.data[image.id].images.original.url)
+
+                    copy.removeAttribute("class")
+                    copy.setAttribute("class","blogContent")
+                    this.props.Select(copy)
+                    
+     
+                    
+                })
             }
 
     
@@ -94,27 +59,90 @@ class ImagesFet extends Component {
     
     
             let images=document.querySelectorAll(`.${styles.FetchedGif}`)
-            for(let j=0;j<images.length;j++){
-                images[j].addEventListener('click',()=>{
-                    let copy=images[j].cloneNode(true)
-                    copy.removeAttribute("class")
-                    copy.setAttribute("class","articleImage")
-                    this.props.Select(copy)
+            // for(let j=0;j<images.length;j++){
+            //     images[j].addEventListener('click',()=>{
+            //         let copy=images[j].cloneNode(true)
+            //         copy.removeAttribute("class")
+            //         copy.setAttribute("class","articleImage")
+            //         this.props.Select(copy)
                     
      
                     
-                })
-            }
+            //     })
+            // }
 
-          
-  
+
+
+            const thisprops=this.props.Fetched
+            console.log(thisprops)
+            const thisporps0=this.props
+            let index=1
+
+            imageDiv.onscroll=function(){
+                if ((imageDiv.offsetHeight + imageDiv.scrollTop) >= imageDiv.scrollHeight) {
+                    let SecondVar=thisprops
+                    let index=imageDiv.childElementCount
+                    let limit=imageDiv.childElementCount+4
+                    let thisprops1=thisporps0
+                    if(limit<50){
+                        for(let i=index;i<limit;i++){
+                            let thisporps2=thisprops1
     
-          
+                            let ThirdVar=SecondVar
+                            // console.log(ThirdVar.data[i].images.original.url)
+                            let image=document.createElement("img")
+                            image.setAttribute("src",ThirdVar.data[`${i}`].images.preview_gif.url)
+                            image.setAttribute("class",`${styles.FetchedGif}`)
+                            image.setAttribute("id",i)
+                    
+                            let fourthvar=ThirdVar
+                            let thisprops3=thisporps2
+                            image.addEventListener('click',()=>{
+                                let copy=document.createElement("img")
+                                copy.setAttribute("src",fourthvar.data[image.id].images.original.url)
+            
+                                copy.removeAttribute("class")
+                                copy.setAttribute("class","articleImage")
+                                thisprops3.Select(copy)
+                                
+                 
+                                
+                            })
+                            imageDiv.appendChild(image)
 
-            // let incj=this.state.j+1
-            // this.setState({
-            //     j:incj
-            // })
+                    }
+              
+                    }
+                    // if(index==1){
+                    //     const secondVar=thisprops
+                
+    
+                    //     for(let i=imageDiv.childElementCount;i<i+4;i++){
+                    //         console.log(1)
+                    //         // let image=document.createElement("img")
+                    //         // let image=document.createElement("img")
+                    //         let ThirdVar=secondVar
+                   
+                    //         console.log(ThirdVar.data[5].images.original.url)
+                    //         // image.setAttribute("src",thisprops.data[`${i}`].images.original.url)
+                    //         // image.setAttribute("class",`${styles.FetchedGif}`)
+                    //         // imageDiv.appendChild(image)
+                    //     }
+                    //     index++
+
+            
+
+                    // }
+           
+        
+        
+                        
+                    }
+            
+    
+    
+            }
+           
 
             
 
@@ -127,37 +155,7 @@ class ImagesFet extends Component {
         
     }
     componentDidMount(){    
-        let imageDiv=document.getElementById("Gif_div")
-
-        const thisprops=this.props
-        imageDiv.onscroll=function(){
-            if ((imageDiv.offsetHeight + imageDiv.scrollTop) >= imageDiv.scrollHeight) {
-                
-                console.log(thisprops.Fetched)
-            
-
-                for(let i=imageDiv.childElementCount;i<i+4;i++){
-                    // let image=document.createElement("img")
-                    let image=document.createElement("img")
-                    console.log(thisprops.Fetched.data[4].images)
-                    // image.setAttribute("src",thisprops.data[`${i}`].images.original.url)
-                    // image.setAttribute("class",`${styles.FetchedGif}`)
-                    // imageDiv.appendChild(image)
-                }
-    
-    
-    
-                    
-                }
-        
-
-
-        }
-       
-  
-
-
-
+ 
      
 
 
@@ -234,4 +232,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 // export default Writing
-export default (connect(mapStateToProps,mapDispatchToProps)(ImagesFet))
+export default (connect(mapStateToProps,mapDispatchToProps)(GifFetching))
