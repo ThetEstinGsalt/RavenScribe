@@ -6,7 +6,12 @@ import NavigationBar from '../public/components/Navigation'
 import Downbar from '../public/components/Downbar'
 import axios from 'axios';
 import Parser from 'html-react-parser';
-
+import Berry from '../public/icons/Berry.png'
+import Share from '../public/icons/share.svg'
+import Save from '../public/icons/save.png'
+import Download from '../public/icons/download.png'
+import Badge from '../public/icons/Annex.png'
+import Image from 'next/image'
 
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -54,25 +59,25 @@ class Blogpage extends Component {
 
     componentDidMount() {
 
-        let query = ((window.location.href.split("/"))[window.location.href.split("/").length - 2])
-        // let query = queryp.replace(/^./, queryp[0].toUpperCase());
-        // while (this.state.blog.length !== 0) {
+        // let query = ((window.location.href.split("/"))[window.location.href.split("/").length - 2])
+        // // let query = queryp.replace(/^./, queryp[0].toUpperCase());
+        // // while (this.state.blog.length !== 0) {
 
-        axios.get(`http://127.0.0.1:8000/api/${query}`).then(res => {
-            // this.setState({ Blog: res.data })
-            console.log(res.data.Content)
-            this.setState({ blog: res.data })
+        // axios.get(`http://127.0.0.1:8000/api/${query}`).then(res => {
+        //     // this.setState({ Blog: res.data })
+        //     console.log(res.data.Content)
+        //     this.setState({ blog: res.data })
 
-            // const fieldValue = (
-            //     <div dangerouslySetInnerHtml={{ __html: this.state.blog.Content }} className="article" name="article" />
-            // );
-            // document.getElementsByClassName("articles")[0].innerHTML = fieldValue
-            document.getElementsByClassName("article")[0].innerHTML = res.data.Content
+        //     // const fieldValue = (
+        //     //     <div dangerouslySetInnerHtml={{ __html: this.state.blog.Content }} className="article" name="article" />
+        //     // );
+        //     // document.getElementsByClassName("articles")[0].innerHTML = fieldValue
+        //     document.getElementsByClassName("article")[0].innerHTML = res.data.Content
 
 
 
-        }).catch(function (err) { console.log(err.response.data) });
-        console.log(this.state.blog.Content)
+        // }).catch(function (err) { console.log(err.response.data) });
+        // console.log(this.state.blog.Content)
         // let update_cont = async function () {
         //     while (inartcontent === "") {
         //         if (inartcontent === "") {
@@ -228,6 +233,46 @@ class Blogpage extends Component {
 
 
             })
+
+           
+
+
+
+            let Thumbnail=document.getElementById("thumbnail")
+            let Thumberry=document.getElementById("BerryThumb")
+
+            Thumbnail.ondblclick=()=>{
+              
+
+                Thumbnail.style.opacity=".8"
+                Thumberry.style.visibility="visible"
+                // transform: translate(120px, 50%);
+                Thumberry.style.transform="scale(1)"
+
+                Thumberry.style.transform="translate(0px, 0%)"
+
+        
+       
+
+                setTimeout(function(){
+                 
+                    // Thumberry.style.top="29%"
+     
+                  
+                    Thumberry.style.visibility="hidden"
+                    Thumbnail.style.opacity="1"
+
+                    Thumberry.style.transform="scale(1.3)"
+
+                    // Thumberry.style.transform="translate(0px,60%)"
+
+
+               }, 1000);
+
+        
+            }
+
+
             let scroll1 = document.querySelector('.wrapper')
             scroll1.scrollTo(460, 0)
 
@@ -358,6 +403,7 @@ class Blogpage extends Component {
     render() {
         return (
             <>
+            <NavigationBar/>
 
                 <div id="pagination-prev" className="pagination-blog" onClick={this.id}
                     style={{ background: `url('https://images.unsplash.com/photo-1651212989224-3c5d494a524f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80') center center/cover` }}>
@@ -431,18 +477,56 @@ class Blogpage extends Component {
 
                 {/* <!-- ----------------------------------------------------- --> */}
                 <div className="site-content">
+                <div class="article" name="article">
+
                     <div className="blog-heading">
-                        {this.state.blog.Title}
+                        This is a dummy sample Blog on RavenScribe And thats Title
 
 
                     </div>
 
-                    <img src={this.state.blog.Thumbnail} alt="" id="thumbnail" />
+              
+                    <div id="thumbnail" contentEditable="false" style={{background:'url("https://plus.unsplash.com/premium_photo-1674641195167-8deb8d591860?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80") center center/cover'}}> 
+
+           
+                    <Image src={Berry} height={300} width={300} id="BerryThumb"  alt="" unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;"/>
+
+                    
+                    </div>
+
+
+
+                    <div className='VBSSall' unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;">
+                    <div className='VBSS'  >
+                    <Image src={Berry} height={30} width={30} id="Berry"  alt="" />
+                    <Image src={Share} height={30} width={30} id=""  alt="" />
+                    <Image src={Save} height={30} width={30} id=""  alt="" />
+                    <Image src={Download} height={30} width={30} id=""  alt="" />
+
+
+
+                    </div>
+                    <span id="viewCountSpan">12234345  Views</span>
+
+                    </div>
+
+              
+
+
                     <div className=" space">
                         advertisement
                     </div>
                     <div className="concept">
-                        {this.state.blog.Concept}
+                        This is concept concept concept and some other concept
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        
+                         remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
 
 
 
@@ -450,6 +534,25 @@ class Blogpage extends Component {
                     <div className=" space">
                         advertisement
                     </div>
+
+                    <div className="articleHeading">
+                        This is the Article Heading of the dummy blog
+                     
+                    </div>
+
+                    <div className="blogContent">
+                    This is concept concept concept and some other concept
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        
+                        <br/>
+                        <br/>
+
+                         remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+
+
+                    </div>
+                
 
 
 
@@ -459,7 +562,6 @@ class Blogpage extends Component {
 
 
                     {/* <div className="article"> */}
-                    <div class="article" name="article">
 
                         {/* <div dangerouslySetInnerHTML={{ __html: (this.state.blog.Content) }} className="article" name="article">
                     </div> */}
@@ -469,9 +571,70 @@ class Blogpage extends Component {
 
 
 
+                <div className='BerryParent'>
+                <div className='BerryRatingLabel'>
+                    Rate this Article!
+                </div>
+                <div className='RatingBerries'>
+                    <div id="RatingBerry-1" className='RatingBerry'>
+                    <Image src={Berry} height={60} width={60}   alt="" />
 
 
                     </div>
+        
+                    <div id="RatingBerry-2" className='RatingBerry'>
+                    <Image src={Berry} height={60} width={60}   alt="" />
+
+
+                    </div>
+
+                    <div id="RatingBerry-3" className='RatingBerry'>
+                    <Image src={Berry} height={60} width={60}   alt="" />
+
+
+                    </div>
+
+                    <div id="RatingBerry-4" className='RatingBerry'>
+                    <Image src={Berry} height={60} width={60}   alt="" />
+
+
+                    </div>
+
+                    <div id="RatingBerry-5" className='RatingBerry'>
+                    <Image src={Berry} height={60} width={60}   alt="" />
+
+
+                    </div>
+        
+
+                </div>
+
+                </div>
+
+        
+                <div className='WriterSectionBGpage'>
+                    <div className='WriterImageBgpage' style={{"background":'url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS5FXAyhXJaW9Epa1l8Hpz0VfmSjylO20Jplb8EIa36rXJIsFXS" ) center center/cover'}}>
+
+               
+
+                    </div>
+
+                    <div className='BerryRatingLabel' style={{"padding":"1em 2em"}}>
+                    <span id="WriterNameBG">Brian Cox</span>  <Image src={Badge} height={20} width={20}   alt="" />
+
+                    </div>
+
+                    <button id="Annex">Annex</button>
+
+
+                </div>
+                <div className=" space">
+                        advertisement
+                    </div>
+            
+
+
+                </div>
 
 
 
@@ -528,7 +691,7 @@ class Blogpage extends Component {
 
 
 
-                    <div className="article-heading">
+                    <div className="articleHeading">
                         If you like this topic, you may also like
                     </div>
                     <div className="affiliate">
@@ -559,7 +722,7 @@ class Blogpage extends Component {
                         advertisement
                     </div>
 
-                    <div className="article-heading" style={{ color: 'rgb(53, 53, 53)' }}>
+                    <div className="articleHeading" style={{ color: 'rgb(53, 53, 53)' }}>
                         IF YOU LIKED OUR BLOG , ALSO CHECK THESE OUT
 
                     </div>
@@ -573,6 +736,7 @@ class Blogpage extends Component {
 
 
                 </div>
+
                 {/* <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators" style={{ bottom: 175 + 'px' }}>
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>

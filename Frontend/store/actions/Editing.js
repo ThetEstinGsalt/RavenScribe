@@ -34,6 +34,16 @@ export const SelectSuccess= (div) => {
     }
 }
 
+export const SubmitBarDisplay= (Boolean) => {
+
+
+    return {
+        type: actionTypes.SubmitBar_Display,
+        SubmitBarDisplay:Boolean,
+
+    }
+}
+
 export const FontSuccess = (Font) => {
 
 

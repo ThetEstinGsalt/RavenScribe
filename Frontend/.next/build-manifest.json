@@ -12,6 +12,16 @@
   ],
   "rootMainFiles": [],
   "pages": {
+    "/Blogpage": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Blogpage.js"
+    ],
+    "/Profile": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Profile.js"
+    ],
     "/Writing": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

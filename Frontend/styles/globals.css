@@ -25,12 +25,135 @@
 
 }
 
-form {
+
+
+#Annex{
+  border-radius: 1em;
+    font-family: 'Cabin',sans-serif;
+    padding: 0.4em 2em;
+    background: lightskyblue;
+}
+#WriterImageBgpageImg{
+
+}
+
+
+#WriterNameBG{
+
+  margin-right: 0.4em;
+}
+
+
+.WriterImageBgpage{
+  height: 7em;
+  width: 7em;
+  border-radius: 10em;
+
+}
+.WriterSectionBGpage{
+
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 10em;
+
+
+}
+
+
+.BerryParent{
+  margin: 3em 0em;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  padding: 2em;
+  
+}
+
+.BerryRatingLabel{
+  font-size: 1.5em;
+    font-weight: 700;
+    color: #000;
+    color: #4c4b4b;
+    text-align: center;
+    /* margin: 2em 0em; */
+    font-family: 'Cabin', sans-serif;
+    padding: 0em 2em;
+
+    line-height: 1.6;
+    
+ 
+    display: flex;
+    align-items: center;
+
+
+}
+.RatingBerries{
+
+  display: flex;
+}
+
+.RatingBerry{
+  margin: 0.5em;
+
+}
+
+
+
+
+
+#viewCountSpan{
+
+    letter-spacing: 2px;
+    font-family: cursive;
+    font-style: italic;
+    font-weight: bold;
+    opacity: .75;
+
+}
+
+.VBSSall{
+
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0em 1em;
+    margin-bottom: 1em;
+    -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+
+
+}
+
+.VBSS{
+
+
+
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+ 
+
+
+}
+
+
+#submitLink{
+  opacity: 1;
+  border-bottom: 1px solid lightskyblue;
+}
+
+/* form {
   transition: 1s all ease;
   position: fixed;
   right: 1.67em;
   top: 2em;
-}
+} */
 
 #blog_submit {
 
@@ -86,6 +209,11 @@ form {
   transition: .7s all ease;
 }
 
+/* .udl{
+  -webkit-user-select: none; 
+  -ms-user-select: none;
+  user-select: none;
+} */
 .img_box {
   display: flex;
   justify-content: center;
@@ -310,12 +438,32 @@ textarea {
 
 }
 
+#BerryThumb{
+
+  filter: brightness(0);
+  position: relative;
+  /* top: 29%; */
+  /* display: none; */
+  visibility: hidden;
+  
+  transition: .2s all ease;
+  transform: translate(0px,60%);
+  -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+  
+}
+
 #thumbnail {
 
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   width: 1160px;
-  /* height: 677px; */
+  height: 677px;
   height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* opacity: .8; */
+
+
 }
 
 .concept {
@@ -493,7 +641,7 @@ img {
   #thumbnail {
     margin-bottom: 2em;
     max-width: 1160px;
-    height: auto;
+    height: 60vw;
     width: 93%;
 
   }
@@ -1444,10 +1592,10 @@ hr {
 
 #thumbnail {
 
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   width: 1160px;
-  /* height: 677px; */
-  height: auto;
+  height: 677px;
+
 }
 
 .concept {

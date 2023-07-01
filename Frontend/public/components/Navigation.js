@@ -34,7 +34,7 @@ class Navigation extends Component {
 
             })
             $('.search-image').on("click", function () {
-                $('.searchbar').css({ 'z-index': '1000', 'visibility': 'visible', 'opacity': '.99', 'display': 'flex' })
+                $('.searchbar').css({ 'z-index': '1001', 'visibility': 'visible', 'opacity': '.99', 'display': 'flex' })
                 // $('.searchbar').show()
 
             })

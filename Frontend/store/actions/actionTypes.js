@@ -20,4 +20,6 @@ export const INSERT_SELECT = "INSERT_SELECT"
 
 export const DELETE_SELECT = "DELETE_SELECT"
 
+export const SubmitBar_Display = "SubmitBar_Display"
+
 

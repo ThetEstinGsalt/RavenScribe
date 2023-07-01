@@ -20,6 +20,7 @@ const initialState = {
     Delete:0,
     loading:false,
     CatFetch:null,
+    SubmitBarDisplay:false,
 
 
 }
@@ -69,6 +70,13 @@ const SelectDelete=(state,action)=>{
 }
 
 
+const SubmitBarDisplay=(state,action)=>{
+    return updateObject(state,{
+        SubmitBarDisplay:action.SubmitBarDisplay
+    })
+}
+
+
 
 
 const reducerEdit = (state = initialState, action) => {
@@ -86,6 +94,8 @@ const reducerEdit = (state = initialState, action) => {
             return (SelectInsert(state, action ))
         case actionTypes.DELETE_SELECT:
             return (SelectDelete(state, action ))
+        case actionTypes.SubmitBar_Display:
+            return (SubmitBarDisplay(state, action ))
 
     
 
