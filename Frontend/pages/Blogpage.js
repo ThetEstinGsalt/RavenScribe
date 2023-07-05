@@ -12,6 +12,7 @@ import Save from '../public/icons/save.png'
 import Download from '../public/icons/download.png'
 import Badge from '../public/icons/Annex.png'
 import Image from 'next/image'
+import ConformationBar from '../public/components/ConformationBar'
 
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -59,48 +60,43 @@ class Blogpage extends Component {
 
     componentDidMount() {
 
-        // let query = ((window.location.href.split("/"))[window.location.href.split("/").length - 2])
-        // // let query = queryp.replace(/^./, queryp[0].toUpperCase());
-        // // while (this.state.blog.length !== 0) {
 
-        // axios.get(`http://127.0.0.1:8000/api/${query}`).then(res => {
-        //     // this.setState({ Blog: res.data })
-        //     console.log(res.data.Content)
-        //     this.setState({ blog: res.data })
+            let Berries= document.getElementsByClassName("RatingBerry")
+            let Berriescont= document.getElementsByClassName("RatingBerries")
 
-        //     // const fieldValue = (
-        //     //     <div dangerouslySetInnerHtml={{ __html: this.state.blog.Content }} className="article" name="article" />
-        //     // );
-        //     // document.getElementsByClassName("articles")[0].innerHTML = fieldValue
-        //     document.getElementsByClassName("article")[0].innerHTML = res.data.Content
+            for(let z=0;z<Berries.length;z++){
+
+                Berries[z].addEventListener("click",()=>{
+                    console.log(Berries[z].id.split("-")[1])
+                })
 
 
+                Berries[z].onmouseover=()=>{
+                    let index=parseInt( Berries[z].id.split("-")[1])
+                    for(let i=0;i<index;i++){
+                        document.getElementById(`RatingBerry-${i+1}`).style.opacity="1"
+                    }
+                   
 
-        // }).catch(function (err) { console.log(err.response.data) });
-        // console.log(this.state.blog.Content)
-        // let update_cont = async function () {
-        //     while (inartcontent === "") {
-        //         if (inartcontent === "") {
-        //             inartcontent = await this.state.blog.content
-        //         }
-        //         else {
-        //             break
-        //         }
+                }
+                Berries[z].onmouseleave=()=>{
+                    let index=parseInt( Berries[z].id.split("-")[1])
+                    for(let i=0;i<index;i++){
+                        document.getElementById(`RatingBerry-${i+1}`).style.opacity=".5"
+                    }
+                
+                    
+                }
+                
 
+            }
+            Berriescont.onmouseleave=()=>{
+                for(let z=0;z<Berries.length;z++){
+                    Berries[z].style.opacity=".5"
+                }
+                
+            }
 
-        //     }
-
-        // }
-        // update_cont()
-
-
-
-
-        // }
-
-
-
-        // window.onload = () => {
 
 
 
@@ -403,6 +399,8 @@ class Blogpage extends Component {
     render() {
         return (
             <>
+                        {/* <ConformationBar/> */}
+
             <NavigationBar/>
 
                 <div id="pagination-prev" className="pagination-blog" onClick={this.id}
@@ -490,8 +488,8 @@ class Blogpage extends Component {
 
            
                     <Image src={Berry} height={300} width={300} id="BerryThumb"  alt="" unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;"/>
+                onselectstart="return false;" 
+                onmousedown="return false;"/>
 
                     
                     </div>
@@ -499,8 +497,8 @@ class Blogpage extends Component {
 
 
                     <div className='VBSSall' unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
+                onselectstart="return false;" 
+                onmousedown="return false;">
                     <div className='VBSS'  >
                     <Image src={Berry} height={30} width={30} id="Berry"  alt="" />
                     <Image src={Share} height={30} width={30} id=""  alt="" />

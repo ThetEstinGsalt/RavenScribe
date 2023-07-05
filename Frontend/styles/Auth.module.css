@@ -1,0 +1,188 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@1,500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+.FormHolder{
+    height: 100vh;
+    width: 100vw;
+}
+
+.RavenScribe{
+    margin-bottom: 2em;
+
+}
+
+.SignInForm{
+
+
+
+    margin: auto;
+    margin-top: 19em;
+    width: 35em;
+    height: 48em;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border: 1.2px solid lightgray;
+
+}
+
+/* .FormName{
+
+}
+
+.FormEmail{
+
+}
+
+.FormPassword{
+
+} */
+.SignInSubmit{
+    display: block;
+}
+.FormCountry{
+    display: block;
+    background: white;
+}
+.FormItem{
+
+
+    border: 1px solid lightgray;
+    height: 2em;
+    width: 25em;
+    margin: 1em;
+    font-size: 15px;
+    padding: 17px 0px;
+    border-radius: 1em;
+
+    
+
+
+}
+.FormItem:focus{
+    border: 1px solid lightskyblue;
+}
+
+.FormItem::placeholder{
+    font-size: 15px;
+    color: gray;
+}
+
+.FormCountry{
+
+    border: 1px solid lightgray;
+    margin: 1em;
+    margin-bottom: 5em;
+
+}
+
+.SignInSubmit{
+
+    font-family: Cabin, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #282828;
+    color: #EEEEEE;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    cursor: pointer;
+    border-color: transparent;
+    text-decoration: none !important;
+    margin-top: 1.3em;
+
+}
+
+.google{
+
+}
+
+.googleLogoWrap{
+    display: flex;
+
+    width: 68%;
+    justify-content: flex-end;
+
+}
+
+.crossForm{
+
+}
+
+.crossWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+}
+
+.LogInForm{
+
+    margin: auto;
+    margin-top: 19em;
+    width: 35em;
+    height: 35em;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border: 1.2px solid lightgray;
+
+
+}
+
+.LogInSubmit{
+    font-family: Cabin, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: #282828;
+    color: #EEEEEE;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    cursor: pointer;
+    border-color: transparent;
+    text-decoration: none !important;
+    margin-top: 3.3em;
+
+
+}

@@ -55,6 +55,8 @@ INSTALLED_APPS = [
 
     'rest_auth',
     'corsheaders',
+    'djoser',
+    # 'accounts',
 ]
 
 # MIDDLEWARE = [
@@ -84,7 +86,7 @@ ROOT_URLCONF = 'RavenScribe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,6 +162,39 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'build/static')
+]
+
+STATIC_ROOT= os.path.join(BASE_DIR,'static')
+
+DJOSER={
+    'LOGIN_FIELD':'email',
+    'USER_CREATE_PASSWORD_RETYPE':True,
+    # 'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
+    'SEND_CONFIRMATION_EMAIL':True,
+    # 'SET_USERNAME_RETYPE':True,
+    'SET_PASSWORD_RETYPE':True,
+    'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL':'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL':True,
+    "SERIALIZERS":{
+
+        'user_create':'Publishing_Fetching.api.serializers.UserCreateSerializer',
+
+        'user':'Publishing_Fetching.api.serializers.UserCreateSerializer',
+
+
+        'user_delete':'djoser.serializers.UserDeleteSerializer',
+
+    }
+
+}
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -242,4 +277,8 @@ EMAIL_PORT = 587
 # EMAIL_HOST_PASSWORD= os.environ.get('EMAIL_HOST_PASSWORD')
 
 EMAIL_HOST_USER= 'thetestingsalt@gmail.com'
-EMAIL_HOST_PASSWORD= 'bbiyavdieslmtydl'
+EMAIL_HOST_PASSWORD= 'snunluidgvqjrqmk'
+
+EMAIL_USE_TLS=True
+
+AUTH_USER_MODEL= 'Publishing_Fetching.UserAccount'

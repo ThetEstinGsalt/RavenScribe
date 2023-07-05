@@ -3,23 +3,73 @@
 
 
 
+.temp{
+    height: 1em;
+    width: 4em;
+}
+.LogoutBtn{
+        /* position: absolute; */
+        border: 1px solid;
+        /* width: 59px; */
+        width: 8em;
+        display: flex;
+        padding: 3px 1em;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 1em;
+        background: black;
+        color: white;
+
+}
+.LogoutIcon{
+    filter: invert(1);
+}
+.SubBadge{
+    margin-bottom: 2px;
+}
+
+.recArrow{
+    filter: invert(1);
+}
+
+.ProfileOption{
+    margin: 1em;
+    color: gray;
+    cursor: pointer;
+}
+.ProfileOption:first-child{
+    border-bottom: 1px solid lightskyblue;
+    color: black;
+}
 .ProfileOptions{
+
+    position: relative;
+    bottom: 6.5em;
+    display: flex;
+    justify-content: center;
     
 }
 .coverPicture{
 
 
-    width: 100%;
-    margin-top: 0em;
-    height: 20em;
-    border: 1px solid;
 
+
+    width: 90%;
+
+    height: 20em;
+    margin: auto;
+  
+
+}
+.info{
+    width: 18em;
+    margin: auto;
 }
 
 .ProfilePicture{
-    height: 14em;
-    width: 14em;
-    border: 1px solid;
+    height: 10em;
+    width: 10em;
+    /* border: 1px solid; */
     margin: auto;
     position: relative;
     bottom: 7em;
@@ -28,12 +78,17 @@
 }
 
 .WriterName{
-    border: 1px solid;
+
     margin: auto;
     text-align: center;
     position: relative;
     bottom: 3.5em;
     font-size: 2em;
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
 }
 
 .contents{
@@ -43,6 +98,8 @@
     height: auto;
     position: relative;
     bottom: 5em;
+    width: 90%;
+    margin: auto;
 
 }
 
@@ -52,16 +109,47 @@
 
 }
 
-.InsThumb{
- 
-
-    border: 1px solid;
-    height: 15em;
-    width: 22em;
-
-
-}
 
 .InsTitle{
 
+    font-size: 1.2em;
+    margin: 1em;
+    width: 16em;
+    transition: .1.7s all ease;
+    cursor: pointer;
+
+
+}
+.InsTitle:hover{
+    opacity: .5;
+}
+
+
+.AddWtBtn{
+    /* display: flex;
+    align-items: center; */
+
+    display: flex;
+    align-items: center;
+    /* border: 1px solid; */
+    width: 9em;
+    justify-content: space-evenly;
+    margin: auto;
+    color: white;
+    padding: 1em;
+    border-radius: 10px;
+    background: black;
+    letter-spacing: 2px;
+    align-items: baseline;
+    margin-bottom: 3em;
+}
+
+
+
+.WritePlusIcon{
+    transform: rotate(45deg);
+
+    filter: opacity(0.6);
+    width: .7em;
+    filter: invert(1);
 }

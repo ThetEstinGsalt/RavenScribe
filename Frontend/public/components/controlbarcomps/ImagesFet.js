@@ -22,13 +22,20 @@ class GifFetching extends Component {
         Fetched:null,
         Index:1,
         Input:null,
+        
  
     }
 
     componentDidUpdate(){
 
+
+        const thisState=this.state
+
+
+
         const thisprops1=this.props
         if(this.props.Type=="I" ){
+            console.log(thisprops1.Fetched)
             let imageDiv=document.getElementById("image_div")
 
 
@@ -36,6 +43,11 @@ class GifFetching extends Component {
 
             let length=this.props.Fetched.photos.length
             let thisprops2=thisprops1
+            if(length==0){
+                let message=document.createElement("div")
+                message.innerText="Sorry there are no image on this keyword"
+                imageDiv.append(message)
+            }
             for(let i=0;i<length;i++){
                 // let image=document.createElement("img")
                 let thisprops3=thisprops2
@@ -52,6 +64,8 @@ class GifFetching extends Component {
 
                     copy.removeAttribute("class")
                     copy.setAttribute("class","blogContent")
+       
+              
                     this.props.Select(copy)
                     
      
@@ -81,76 +95,34 @@ class GifFetching extends Component {
 
 
             const thisprops=this.props.Fetched
-            console.log(thisprops)
+
             const thisporps0=this.props
             let index=1
             const thisState=this.state
             const self =this
-            imageDiv.onscroll=function(){
+            imageDiv.onscroll=function(e){
                 if ((imageDiv.offsetHeight + imageDiv.scrollTop) >= imageDiv.scrollHeight) {
+                    e.preventDefault()
 
                     // let SecondVar=thisprops
                     // let index=imageDiv.childElementCount
                     // let limit=imageDiv.childElementCount+4
                     // let thisprops1=thisporps0
-                    let index=thisState.Index + 1
-                    self.ImageFetch(thisState.Input,index)
-                    self.setState({
-                        Index:index
-                     
-                    })
 
 
-                    // if(limit<50){
-                    //     for(let i=index;i<limit;i++){
-                    //         let thisporps2=thisprops1
-    
-                    //         let ThirdVar=SecondVar
-                    //         // console.log(ThirdVar.data[i].images.original.url)
-                    //         let image=document.createElement("img")
-                    //         image.setAttribute("src",ThirdVar.photos[`${i}`].src.small)
-                    //         image.setAttribute("class",`${styles.FetchedGif}`)
-                    //         image.setAttribute("id",i)
                     
-                    //         let fourthvar=ThirdVar
-                    //         let thisprops3=thisporps2
-                    //         image.addEventListener('click',()=>{
-                    //             let copy=document.createElement("img")
-                    //             copy.setAttribute("src",fourthvar.data[image.id].images.original.url)
-            
-                    //             copy.removeAttribute("class")
-                    //             copy.setAttribute("class","articleImage")
-                    //             thisprops3.Select(copy)
-                                
-                 
-                                
-                    //         })
-                    //         imageDiv.appendChild(image)
+                    let index=thisprops.page+1
+   
 
-                    // }
-              
-                    // }
-                    // if(index==1){
-                    //     const secondVar=thisprops
-                
-    
-                    //     for(let i=imageDiv.childElementCount;i<i+4;i++){
-                    //         console.log(1)
-                    //         // let image=document.createElement("img")
-                    //         // let image=document.createElement("img")
-                    //         let ThirdVar=secondVar
-                   
-                    //         console.log(ThirdVar.data[5].images.original.url)
-                    //         // image.setAttribute("src",thisprops.data[`${i}`].images.original.url)
-                    //         // image.setAttribute("class",`${styles.FetchedGif}`)
-                    //         // imageDiv.appendChild(image)
-                    //     }
-                    //     index++
+                    self.ImageFetch(thisprops.next_page.split("=")[3]
+                        ,index)
+                    // self.setState({
+                    //     Index:index
+                     
+                    // })
 
-            
 
-                    // }
-           
+        
         
         
                         
@@ -180,17 +152,27 @@ class GifFetching extends Component {
         const thisState=this.state
         let search_inp=document.getElementsByClassName(`${styles.image_search}`)[0]
         search_inp.addEventListener("keydown",(e)=>{
+            let boxemp=document.getElementById("image_div")
+
             if(e.key=="Enter"){
-                document.getElementById("image_div").innerHTML=""
+
+                boxemp.innerHTML=""
+         
+           
 
             
-                let index=thisState.Index
+                let index=1
+            
+                
                 
                 this.ImageFetch(search_inp.value,index)
-                this.setState({
-                    Index:index+1,
-                    Input:search_inp.value
-                })
+                boxemp.innerHTML=""
+
+                // let index=thisState.Index
+                // this.setState({
+                //     Index:index+1,
+                //     Input:search_inp.value
+                // })
 
 
             }
@@ -206,22 +188,22 @@ class GifFetching extends Component {
          
 
             
-          <div className='HolderImg'>
+        <div className='HolderImg'>
                      <div className={styles.Search}>
                          
-                        <input className={styles.image_search}></input>
+                        <input className={styles.image_search} placeholder='Enter Image search keyword'></input>
              
                     
                      </div>
          
-                     <div className={styles.Image_display} id="image_div">
+                     <div className={styles.Image_display} id="image_div" >
             
                          
               
                    </div>
          
          
-                    </div>
+        </div>
              
                      
                   

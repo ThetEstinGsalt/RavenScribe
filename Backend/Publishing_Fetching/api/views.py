@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView,RetrieveAPIView,CreateAPIView,GenericAPIView,UpdateAPIView
 
-from Publishing_Fetching.models import User_inf,Blog
+from Publishing_Fetching.models import UserAccount,Blog
 
 from .serializers import UserInfSerializer,BlogSerializer
 
@@ -27,21 +27,21 @@ from django.conf import settings
 
 
 class CreateBlog(CreateAPIView):
-    queryset=User_inf.objects.all()
+    queryset=UserAccount.objects.all()
     serializer_class=BlogSerializer
 
 class EditBLog(UpdateAPIView):
-    queryset=User_inf.objects.all()
+    queryset=UserAccount.objects.all()
     serializer_class=BlogSerializer
 
 
 class UserListView(ListAPIView):
-    queryset=User_inf.objects.all()
+    queryset=UserAccount.objects.all()
     serializer_class=UserInfSerializer
 
 
 class UserDetailView(RetrieveAPIView):
-    queryset=User_inf.objects.all()
+    queryset=UserAccount.objects.all()
     serializer_class=UserInfSerializer
 
     lookup_field='email'

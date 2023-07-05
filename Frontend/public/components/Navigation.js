@@ -34,7 +34,7 @@ class Navigation extends Component {
 
             })
             $('.search-image').on("click", function () {
-                $('.searchbar').css({ 'z-index': '1001', 'visibility': 'visible', 'opacity': '.99', 'display': 'flex' })
+                $('.searchbar').css({ 'z-index': '1002', 'visibility': 'visible', 'opacity': '.99', 'display': 'flex' })
                 // $('.searchbar').show()
 
             })
@@ -173,7 +173,8 @@ class Navigation extends Component {
                         <a href={"/"} styles={{ color: "black", textDecoration: "none", marginLeft: 0.5 + 'em' }}>RavenScribe</a>
 
 
-                        <img id="hamcross" src="../icons/cross.png" alt="" style={{ marginTop: 2.9 + 'px' }} />
+                        <img id="hamcross" src="../icons/cross.png" alt="" />
+                        {/* style={{ marginTop: 2.9 + 'px' }} */}
                     </div>
 
                     <a href={"/"}>
@@ -226,8 +227,12 @@ class Navigation extends Component {
                     </div>
 
 
-
+                    <div className='Logged_inUser_IMG' style={{background:'url("https://static01.nyt.com/images/2023/03/29/multimedia/29musk-ai1-bjhm/29musk-ai1-bjhm-articleLarge.jpg?quality=75&auto=webp&disable=upscale") center center/cover'}}>
+                    
+                    </div>
+                    <span className='LoggedinUserName'>Brain Cox</span>
                 </ul>
+           
 
             </>
 

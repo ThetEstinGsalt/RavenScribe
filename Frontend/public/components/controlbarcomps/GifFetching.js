@@ -184,7 +184,9 @@ class GifFetching extends Component {
             <div className='HolderGif'>
             <div className={styles.Search}>
                 
-                <input className={styles.Gif_search}></input>
+                <input className={styles.Gif_search} placeholder='Enter GIF search keyword'></input>
+                {/* <input className={styles.image_search}></input> */}
+
     
            
             </div>

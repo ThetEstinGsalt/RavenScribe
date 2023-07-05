@@ -1,0 +1,53 @@
+.ConfoBar{
+    background: white;
+    border: 1px solid lightgray;
+    width: 30%;
+    height: 20em;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 34%;
+    top: 33%;
+    z-index: 1003;
+}
+
+.Prompt{
+
+}
+
+.Resbtns{
+
+
+    height: 30%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.PromtpInp{
+    border: 1px solid;
+    border-color: deepskyblue;
+    width: 80%;
+    height: 20%;
+    border-radius: 1.5rem;
+    margin: 1em 0em;
+  
+    font-size: 1em!important;
+  
+  }
+
+
+.PromptRes{
+
+
+    width: 40%;
+    border-radius: 100px;
+    height: 30%;
+    margin: 1em;
+    background: lightskyblue;
+
+}

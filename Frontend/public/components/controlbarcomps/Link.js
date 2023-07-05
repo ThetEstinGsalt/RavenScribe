@@ -52,10 +52,10 @@ class Link extends Component {
     }
     render() {
         return (
-            <div>
+            <div className={styles.LinkContainer}>
 
-                This is nothing but a bitch lasagna
-                <input id="link_inp"></input>
+                Link Of youtube video or Image/Gif you wish to add
+                <input id="link_inp" className={styles.LinkInput} placeholder='Only links here'></input>
                 
             </div>
         );

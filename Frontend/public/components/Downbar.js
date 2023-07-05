@@ -6,7 +6,11 @@ import grabimg from "../icons/grabber_arrow.png"
 import Desc from './downbar_components/Desc'
 import Comments from './downbar_components/Comments'
 import Links from './downbar_components/Links'
+import Badge from './../icons/Annex.png'
 import Drecommendation from './downbar_components/Drecommendation'
+import Image from 'next/image'
+
+
 export default class Downbar extends Component {
     constructor(props) {
         super(props);
@@ -58,7 +62,7 @@ export default class Downbar extends Component {
 
                 })
                 // downbar.style.bottom = "-49.5em"
-                downbar.style.bottom = "-78%"
+                downbar.style.bottom = "-78.5%"
                 // downbar.style.background = "transparent"
 
             }
@@ -75,7 +79,7 @@ export default class Downbar extends Component {
     }
     componentDidMount() {
         let downbar = document.querySelector(".downbar")
-        downbar.style.bottom = "-78%"
+        // downbar.style.bottom = "-78%"
 
 
         let grabber = document.querySelector(".grabber")
@@ -107,7 +111,12 @@ export default class Downbar extends Component {
                 <div className="downbar">
                     <div className="grabber">
                         <div className="img_box" onClick={this.downbar_activation}>
-                            <img src={grabimg} id="grabber" alt="" />
+
+                            {/* <img src={grabimg} id="grabber" alt="" /> */}
+                            <Image src={grabimg} height={20} width={30} alt="" unselectable="on"
+                onselectstart="return false;" 
+                onmousedown="return false;"/>
+               
                         </div>
                     </div>
 
@@ -129,12 +138,13 @@ export default class Downbar extends Component {
 
                             </div>
                             <div className="writer_name">
-                                Rafid Ahmed
+                                Rafid Ahmed <Image src={Badge} height={20} width={20} id='AnnexBadge'   alt="" />
 
                             </div>
                             <div className="writer_desc">
                                 student at dhanmondi govt boy's high school and ameture writer add content i said add more and more
                                 content so that it gets bigger
+                                <button id="Annex">Annex</button>
 
 
 

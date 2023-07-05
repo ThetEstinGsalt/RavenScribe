@@ -2,18 +2,9 @@ from django.db import models
 
 from django.utils.timezone import now
 from django.contrib.auth.models import User
-
-# Create your models here.
-
+from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager
 
 
-
-
-class history(models.Model):
-
-    Title=models.CharField(default="",max_length=10000)
-    creator=models.IntegerField(default=None)
-    timestamp = models.DateTimeField(default=now)
 
 
 
@@ -28,30 +19,6 @@ class Contact(models.Model):
     insta=models.URLField(default="")
     facebook=models.URLField(default="")
     discord=models.URLField(default="")
-
-
-class Community(models.Model):
-
-    Active=models.BooleanField(default=False)
-    Text=models.CharField(max_length=10000)
-
-    Optionone=models.CharField(max_length=1000,blank=True)
-
-    Optiononecount=models.IntegerField(default=0)
-
-    Optiontwo=models.CharField(max_length=1000,blank=True)
-
-    Optiontwocount=models.IntegerField(default=0)
-
-    Optionthree=models.CharField(max_length=1000,blank=True)
-    Optionthreecount=models.IntegerField(default=0)
-
-    Optionfour=models.CharField(max_length=1000,blank=True)
-    Optionfourcount=models.IntegerField(default=0)
-
-    Optionfive=models.CharField(max_length=1000,blank=True)
-    Optionfivecount=models.IntegerField(default=0)
-
 
 
 class Survey(models.Model):
@@ -79,13 +46,81 @@ class Survey(models.Model):
 
 
     
-    
 
-class User_inf(models.Model):
+class Community(models.Model):
+
+    Active=models.BooleanField(default=False)
+    Text=models.CharField(max_length=10000)
+
+    Optionone=models.CharField(max_length=1000,blank=True)
+
+    Optiononecount=models.IntegerField(default=0)
+
+    Optiontwo=models.CharField(max_length=1000,blank=True)
+
+    Optiontwocount=models.IntegerField(default=0)
+
+    Optionthree=models.CharField(max_length=1000,blank=True)
+    Optionthreecount=models.IntegerField(default=0)
+
+    Optionfour=models.CharField(max_length=1000,blank=True)
+    Optionfourcount=models.IntegerField(default=0)
+
+    Optionfive=models.CharField(max_length=1000,blank=True)
+    Optionfivecount=models.IntegerField(default=0)
+
+
+class Affiliate(models.Model):
+    sno=models.AutoField(primary_key=True)
+    
+    pdc1_name=models.TextField(max_length=300)
+    pdc1_img=models.CharField(max_length=100000)
+    pdc1_link=models.URLField()
+
+
+    pdc1_name=models.TextField(max_length=300,blank=True,null=True,default="")
+    pdc1_img=models.CharField(max_length=100000,blank=True,null=True,default="")
+    pdc1_link=models.URLField(blank=True,null=True,default="")
+
+   
+
+class history(models.Model):
+
+
+
+    timestamp = models.DateTimeField(default=now)
+
+    # HistoryItem = models.ForeignKey(Blog, on_delete=models.CASCADE,default="")
+
+    HistoryItem=models.CharField(max_length=10000)
+
+
+
+
+
+class UserAccountManager(BaseUserManager):
+    def create_user(self,email,name,password=None):
+        if not email:
+            raise ValueError("User must have an email address")
+    
+        emailN=self.normalize_email(email)
+        user=self.model(email=emailN,name=name)
+
+        user.set_password(password)
+
+        user.save()
+
+        return user
+
+
+
+class UserAccount(AbstractBaseUser,PermissionsMixin):
     sno = models.AutoField(primary_key=True)
 
     name= models.TextField(max_length=100)
     email = models.EmailField()
+    is_active=models.BooleanField(default=True)
+    is_staff=models.BooleanField(default=False)
     country= models.TextField(max_length=100,blank=True,null=True)
     career= models.TextField(max_length=100,blank=True,null=True)
     bio= models.TextField(max_length=1000,blank=True,null=True)
@@ -102,26 +137,20 @@ class User_inf(models.Model):
     JWT_per=models.CharField(max_length=10000,blank=True,null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,default="")
 
+    objects=UserAccountManager()
+
+    USERNAME_FIELD ='email'
+    REQUIRED_FEILDS=["name"]
+
+    def get_full_name(self):
+        return self.name
+
+    def get_short_name(self):
+        return self.name
 
 
     def __str__(self):
         return self.name
-
-
-class Affiliate(models.Model):
-    sno=models.AutoField(primary_key=True)
-    
-    pdc1_name=models.TextField(max_length=300)
-    pdc1_img=models.CharField(max_length=100000)
-    pdc1_link=models.URLField()
-
-
-    pdc1_name=models.TextField(max_length=300,blank=True,null=True,default="")
-    pdc1_img=models.CharField(max_length=100000,blank=True,null=True,default="")
-    pdc1_link=models.URLField(blank=True,null=True,default="")
-
-
-
 
 class Blog(models.Model):
     sno = models.AutoField(primary_key=True)
@@ -140,19 +169,48 @@ class Blog(models.Model):
     Desc=models.TextField(max_length=100000,null=True,blank=True)
     Links=models.CharField(max_length=100000,null=True,blank=True)
     Affiliate= models.ForeignKey(Affiliate, on_delete=models.CASCADE,null=True,blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE,null=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     # parent = models.ForeignKey('self', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.Title
 
 
+
+
+    
+# Create your models here.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
 class Comments(models.Model):
     timestamp = models.DateTimeField(default=now)
     comment = models.TextField(max_length=10000)
-    user = models.ForeignKey(User_inf, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     # parent = models.ForeignKey('self', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.comment
+    

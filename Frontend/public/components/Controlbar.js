@@ -21,6 +21,8 @@ export default class Controlbar extends Component {
             Image:false,
             Gif:false,
             Link:false,
+            DownbarState:2,
+
         }
     }
     // state={
@@ -34,6 +36,7 @@ export default class Controlbar extends Component {
         let Image=document.getElementById("Image")
         let Wiki=document.getElementById("Wiki")
         let Link =document.getElementById("Link")
+        let changer =document.getElementById("changer")
 
         Gif.addEventListener('click',()=>{
             this.setState({
@@ -69,21 +72,51 @@ export default class Controlbar extends Component {
             })
         })
 
-        // let looplist=[Gif,Image,Wiki]
-        // let looplistind=['Gif','Image','Wiki']
 
-        // for(let i=0;i<looplist.length;i++){
-            
-        //     looplist[i].addEventListener('click',()=>{
-        //         for(let j=0;j<looplist.length;j++){
-        //             this.state.looplistind[j]=false
-        //         }
-        //         this.state.looplistind[i]=true
 
-            
-        //     })
-        // }
-    
+        changer.onclick=()=>{
+            let downbar = document.getElementsByClassName(`${styles.controldbar}`)[0]
+            console.log(downbar)
+
+            if (this.state.DownbarState==1) {
+
+
+                downbar.style.height="15vh"
+                console.log(downbar.style.height)
+
+                this.setState({
+                    DownbarState: 2
+
+                })
+                // downbar.style.bottom = "-49.5em"
+
+                // downbar.style.background = "transparent"
+
+            }
+            else if(this.state.DownbarState==2){
+                downbar.style.height="51vh"
+                console.log(downbar.style.height)
+
+                this.setState({
+                    DownbarState: 3
+
+                })
+       
+
+            }
+            else{
+                downbar.style.height="1.7vh"
+                console.log(downbar.style.height)
+                this.setState({
+                    DownbarState: 1
+
+                })
+
+            }
+
+        }
+   
+
 
 
 
@@ -95,12 +128,12 @@ export default class Controlbar extends Component {
             <>
 
 
-
+            
                 <div className={styles.controldbar}>
                     <div className="grabber">
-                        <div className="img_box" onClick={this.downbar_activation}>
+                        <div className="img_box">
 
-                        <Image src={grabimg} alt="" width={30} height={500}/>
+                        <Image src={grabimg} alt="" width={30} height={500} id="changer"  />
                         </div>
                     </div>
 

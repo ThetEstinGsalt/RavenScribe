@@ -43,6 +43,7 @@ class Writing extends Component {
         SubmitBar:false,
 
 
+
       }
 
 
@@ -686,7 +687,10 @@ class Writing extends Component {
 
             
          
+
             }
+
+
 
             
    

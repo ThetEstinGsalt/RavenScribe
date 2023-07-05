@@ -1,12 +1,28 @@
 from rest_framework import serializers, fields
+from djoser.serializers import UserCreateSerializer
 
-from Publishing_Fetching.models import User_inf,Blog
+from django.contrib.auth import get_user_model
 
-class UserInfSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model=User_inf
-        fields=('name','email','country','career','bio','DP','CP','Survey','Community','annexes','history','ratings','Contact','verified','payment',"JWT_per","user")
+
+User=get_user_model()
+
+
+# from Publishing_Fetching.models import User_inf,Blog
+from Publishing_Fetching.models import Blog
+
+class UserCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model=User
+        fields=("id","email","name","password")
+
+
+
+# class UserInfSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model=User_inf
+#         fields=('name','email','country','career','bio','DP','CP','Survey','Community','annexes','history','ratings','Contact','verified','payment',"JWT_per","user")
 
 
 
