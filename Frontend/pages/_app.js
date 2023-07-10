@@ -11,11 +11,27 @@ import { configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
   Edit: reducerEdit,
-  auth: reducerauth
+  Auth: reducerauth
 });
+
+
+
+const initialState = {
+ 
+  // token: localStorage.getItem("token"),
+  // refresh:localStorage.getItem("refresh"),
+  // IsAuthenticated:null,
+  // name: null,
+  // error: null,
+  // loading: false,
+  // payload:localStorage.getItem("payload")
+
+}
+
 
 const store = configureStore({
   reducer: rootReducer,
+  preloadedState:initialState,
   middleware: [thunk],
 
 

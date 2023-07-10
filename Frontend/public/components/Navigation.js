@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
+import Image from 'next/image'
+import Logo from '../icons/logo.png'
+import Ham from '../icons/ham.png'
+import Search from '../icons/search.png'
+import Cross from "../icons/cross.png"
+import Arrow from "../icons/arrow.png"
+
 
 class Navigation extends Component {
     constructor(props) {
-        super()
+        super(props)
     }
     componentDidMount() {
         $('document').ready(function () {
@@ -117,9 +124,14 @@ class Navigation extends Component {
                 <nav id="jsnav" className="navigation-bar">
                     <div className="navcontainer">
                         <div className="nav-container">
-                            <img id="ham" src={'../icons/ham.png'} alt="" />
+                            {/* <img id="ham" src={'../icons/ham.png'} alt="" /> */}
+                            <Image src={Ham} id="ham"  height={50} width={25}   alt=""/>
+
                             <div className="logo" >
-                                <img src={'../icons/logo.png'} style={{ height: 3.2 + 'em' }} alt="" />
+                                {/* <img src={'../icons/logo.png'} style={{ height: 3.2 + 'em' }} alt="" /> */}
+                                <Image src={Logo} height={50} width={50}   alt=""  style={{ height: 3.2 + 'em', width:'auto'}}/>
+
+              
                             </div>
 
 
@@ -140,7 +152,9 @@ class Navigation extends Component {
 
                         </ul>
                         <div className="search-image">
-                            <img src="../icons/search.png" alt="" />
+                            {/* <img src="../icons/search.png" alt="" /> */}
+                            <Image src={Search}   height={50} width={20} style={{"marginTop":4 + "px"}}  alt=""/>
+
 
 
 
@@ -152,7 +166,9 @@ class Navigation extends Component {
                 <div className="searchbar">
                     <div className="input">
                         <div id="searchcross">
-                            <img src="../icons/cross.png" alt="" />
+                            {/* <img src="../icons/cross.png" alt="" /> */}
+                            <Image src={Cross}   height={60} width={27}   alt=""/>
+
 
                         </div>
                         <form action={"/search/keyword"} method="get">
@@ -173,42 +189,49 @@ class Navigation extends Component {
                         <a href={"/"} styles={{ color: "black", textDecoration: "none", marginLeft: 0.5 + 'em' }}>RavenScribe</a>
 
 
-                        <img id="hamcross" src="../icons/cross.png" alt="" />
+                        {/* <img id="hamcross" src="../icons/cross.png" alt="" /> */}
+                        <Image src={Cross} id="hamcross"   height={50} width={17}   alt=""/>
+
                         {/* style={{ marginTop: 2.9 + 'px' }} */}
                     </div>
 
                     <a href={"/"}>
-                        <li>Home <div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>Home <div className="arrow">
+
+                            <Image src={Arrow}  height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/>
+
+                           </div>
                         </li>
                     </a>
 
                     <a href={"/search/2"}>
-                        <li>Foods<div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>Foods<div className="arrow">   <Image src={Arrow}   height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/></div>
                         </li>
                     </a>
                     <hr />
                     <a href={"/search/1"}>
-                        <li>Lifestyle<div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>Lifestyle<div className="arrow">   <Image src={Arrow}   height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/></div>
                         </li>
                     </a>
                     <hr />
                     <a href={"/search/3"}>
-                        <li>Guide<div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>Guide<div className="arrow">   <Image src={Arrow}  height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/></div>
                         </li>
                     </a>
                     <hr />
                     <a href={"/search/4"}>
-                        <li>Facts<div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>Facts<div className="arrow">   <Image src={Arrow}   height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/></div>
                         </li>
                     </a>
                     <hr />
                     <a href={"/search/5"}>
-                        <li>Fitness<div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>Fitness<div className="arrow">   <Image src={Arrow}  height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/></div>
                         </li>
                     </a>
                     <hr />
                     <a href={"/about"}>
-                        <li>About<div className="arrow"><img src="../icons/arrow.png" alt="" style={{ height: 16 + 'px' }} /></div>
+                        <li>About<div className="arrow">   <Image src={Arrow}  height={50} width={20} style={{ height: 16 + 'px' }}   alt=""/>
+                        </div>
                         </li>
                     </a>
                     <hr />
@@ -242,4 +265,24 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation
+
+// const mapStateToProps = (state) => {
+//     return {
+//         loading: state.loading,
+//         error: state.error,
+
+//         // isAuthenticated: state.token,
+//         isAuthenticated: state.isAuthenticated
+
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         SignUpCl: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
+
+//     }
+// }
+
+
+export default  Navigation

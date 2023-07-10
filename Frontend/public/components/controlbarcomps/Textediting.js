@@ -169,11 +169,11 @@ const mapStateToProps = (state) => {
     return {
 
         
-        loading: state.auth.loading,
-        error: state.auth.error,
+        loading: state.Auth.loading,
+        error: state.Auth.error,
 
         // isAuthenticated: state.token,
-        isAuthenticated: state.token !== null,
+        isAuthenticated: state.Auth.IsAuthenticated,
         Font:state.Edit.Font,
         Font_Index:state.Edit.Font,
 

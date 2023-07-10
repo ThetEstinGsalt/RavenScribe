@@ -9,7 +9,7 @@ import Links from './downbar_components/Links'
 import Badge from './../icons/Annex.png'
 import Drecommendation from './downbar_components/Drecommendation'
 import Image from 'next/image'
-
+import Grabber from '../icons/grabber.png'
 
 export default class Downbar extends Component {
     constructor(props) {
@@ -110,7 +110,7 @@ export default class Downbar extends Component {
 
                 <div className="downbar">
                     <div className="grabber">
-                        <div className="img_box" onClick={this.downbar_activation}>
+                        <div className="img_box" onClick={this.downbar_activation} style={{"background":`url("../icons/grabber.png") center center/cover`}}>
 
                             {/* <img src={grabimg} id="grabber" alt="" /> */}
                             <Image src={grabimg} height={20} width={30} alt="" unselectable="on"

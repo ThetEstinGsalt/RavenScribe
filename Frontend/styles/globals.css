@@ -2823,7 +2823,7 @@ a:hover {
   position: relative;
   margin: auto;
   background: transparent;
-  background: url('../public/icons/grabber.png') center center/cover;
+  /* background: url('../public/icons/grabber.png') center center/cover; */
   bottom: 0.79em;
   filter: brightness(0.97);
 }

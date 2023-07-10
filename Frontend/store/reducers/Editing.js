@@ -18,7 +18,7 @@ const initialState = {
     Font:"blogContent",
     Insert:"Down",
     Delete:0,
-    loading:false,
+
     CatFetch:null,
     SubmitBarDisplay:false,
 

@@ -8,11 +8,14 @@ export const authStart = () => {
 }
 
 
-export const authSuccess = (token, name) => {
+export const authSuccess = (payload,ID) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token,
-        name: name
+        token: payload.access,
+
+        payload:ID,
+        refresh:payload.refresh,
+        id:ID.id
     }
 }
 
@@ -27,20 +30,73 @@ export const authFail = (error) => {
 
 
 
-export const authLogin = (username, password) => {
+export const reset_password = (email) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ email });
+
+    try {
+        await axios.post(`http://localhost:8000/auth/users/reset_password/`, body, config);
+
+        dispatch({
+            type: actionTypes.PASSWORD_RESET_SUCCESS
+        });
+    } catch (err) {
+        dispatch({
+            type: actionTypes.PASSWORD_RESET_FAIL
+        });
+    }
+};
+
+
+export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ uid, token, new_password, re_new_password });
+
+    try {
+        await axios.post(`http://localhost:8000/auth/users/reset_password_confirm/`, body, config);
+
+        dispatch({
+            type: actionTypes.PASSWORD_RESET_CONFIRM_SUCCESS
+        });
+    } catch (err) {
+        dispatch({
+            type: actionTypes.PASSWORD_RESET_CONFIRM_FAIL
+        });
+    }
+};
+
+
+
+
+
+
+
+export const authLogin = (email, password) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post("http://127.0.0.1:8000/rest-auth/login/", {
-            username: username,
+        axios.post("http://127.0.0.1:8000/auth/jwt/create/", {
+            email: email,
             password: password,
 
         }).then(res => {
 
-            const token = res.data.key;
+            const payload = res.data;
 
-            localStorage.setItem("token", token)
-  
-            dispatch(authSuccess(token, username));
+            localStorage.setItem("payload", JSON.stringify(payload))
+
+
+            dispatch(authLoadUser())
+            // dispatch(authSuccess(token, username));
 
 
         })
@@ -68,48 +124,6 @@ export const logout = () => {
 
 
 
-export const authJWT=(JWT)=>{
-
-    let nums=[]
-    let secLoc=[11,3,17,22,31,51,57,69,70,86]
-    let list_conv=JWT.split("")
-
-
-    for(let i=0;i<=secLoc.length-1;i++){
-        nums.push(list_conv[secLoc[i]])
-    }
-    
-    nums.reverse()
-
-    let id;
-    id =nums.join("")
-    
-    let FJWT=id.replace(/0/g, '')
-
-
-    // let nums=[]
-    // let secLoc=[11,3,17,22,31,51,57,69,70,86]
-    // let list_conv=JWT.split("")
-    
-    // for(let i=0;i<=secLoc.length;i++){
-    //     nums.push(list_conv[i])
-    // }
-    // nums.reverse()
-    // let id;
-    // id =nums.join("")
-
-    // id.replace("0","")
-
-
-    return {
-        type:actionTypes.AUTH_JWT,
-        jwt:parseInt(FJWT) 
-
-    }
-        
-}
-
-
 export const authSignup = (username, email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
@@ -120,58 +134,7 @@ export const authSignup = (username, email, password1, password2) => {
             password2: password2,
 
         }).then(res => {
-            axios.post("http://127.0.0.1:8000/api/create/account/",{
-                name:username,
-                email:email,
-                country:null,
-                career:null,
-                bio:null,
-                DP:null,
-                CP:null,
-                Survey:null,
-                Community:null,
-                annexes:null,
-                history:null,
-                ratings:null,
-                Contact:null,
-                verified:null,
-                payment:null,
-                JWT_per:null,
-                user:null,
-                
-        
-
-
-                
-
-            }).then(res=>{
-                axios({
-                    method: "get",
-                    url: `http://127.0.0.1:8000/api/User/${email}`,
-                  }).then(function (response) {
-                    localStorage.setItem("JWT",response.data.JWT_per) 
-                  }).catch(
-                    err=>{
-                        console.log(err)
-                    }
-                  )
-                    
-                // })
-                
-            
-
-
-                    
-
-
-
-             console.log(res)
-
-            })
-            // const token = res.data.key;
-
-        
-            const token = res.data.key;
+            const token = res.data.access;
 
             localStorage.setItem("token", token)
             
@@ -179,14 +142,20 @@ export const authSignup = (username, email, password1, password2) => {
 
 
             dispatch(authSuccess(token, username));
+          
+                
 
-
-        })
-            .catch(error => {
+            }).catch(error => {
                 dispatch(authFail(error))
                 console.log(error.response)
 
             })
+        
+ 
+
+
+
+          
     }
 }
 
@@ -216,7 +185,7 @@ export const authUpdate = (name,email,country,career,bio,DP,CP,Survey,Community,
 
         }).then(res => {
 
-            const token = res.data.key;
+            const token = res.data.access;
        
 
             // dispatch(authSuccess(token, name));
@@ -234,17 +203,147 @@ export const authUpdate = (name,email,country,career,bio,DP,CP,Survey,Community,
 
 
 
-export const authCheckState = () => {
+export const authLoadUser = () => {
     return dispatch => {
-        const token = localStorage.getItem("token")
-        const id=localStorage.getItem("JWT")
-        if (token == undefined) {
-            dispatch(logout())
-        }
-        if(id.length!==100){
-            dispatch(logout())
+
+        try{
+            const payload = JSON.parse(localStorage.getItem("payload")) 
+      
+            if(payload!==null){
+                if(payload.access){
+                    const config={
+                        headers:{
+                            'Content-Type':'application/json',
+                            'Authorization':`JWT ${payload.access}`,
+                            "Accept":"application/json"
+                        }
+                    }
+                
+               
+                        axios.get("http://127.0.0.1:8000/auth/users/me/",config).then(res => {
+                
+        
+                          
+                            localStorage.setItem("usrPayload",JSON.stringify(res.data))
+                            dispatch(authSuccess(payload,res.data));
+                
+                
+                        })
+                            .catch(error => {
+                
+                                dispatch(authFail(error))
+                                // dispatch(AuthenticationCheck)
+                            })
+                    
+                }
+                if (payload.access == undefined) {
+                    dispatch(logout())
+                }
+    
+    
+            }
+            else{
+                dispatch(authFail("not defined"))
+            }
+      
 
         }
+        catch(e){
+            dispatch(authFail("not defined")),
+            localStorage.clear()
+
+
+        }
+ 
+
 
     }
 }
+
+export const AuthenticationCheck = () => {
+    const payload = JSON.parse(localStorage.getItem("payload")) 
+    const usrPayload =JSON.parse(localStorage.getItem("usrPayload"))
+    return dispatch =>{
+      
+        
+        if(payload!==null){
+            const config={
+                headers:{
+                    'Content-Type':'application/json',
+                 
+                    "Accept":"application/json"
+                }
+            }
+            
+            const Body = JSON.stringify({ token:payload.access})
+
+            try{
+                axios.post("http://127.0.0.1:8000/auth/jwt/verify/",Body,config).then(res => {
+
+                    if(res.data.code!=="token_not_valid"){
+                        dispatch(authSuccess(payload,usrPayload))
+
+                    }else{
+                        dispatch(authFail("unable to authenticate"))
+                    }
+
+                }).catch( err=>{
+                    axios.post("http://localhost:8000/auth/jwt/refresh/",{
+                        refresh:payload.refresh
+                    },config).then(res=>{
+                        if(res.data.code!=="token_not_valid"){
+
+                            // localStorage.setItem("token",JSON.stringify(res.data.access))
+
+                            let payloadUp={"access":res.data.access,"refresh":payload.refresh}
+                            localStorage.setItem("payload",JSON.stringify(payloadUp))
+
+                            axios.post("http://127.0.0.1:8000/auth/jwt/verify/",{"token":res.data.access},config).then(res=>{
+                                dispatch(authSuccess(payloadUp,usrPayload))
+
+                            }).catch(err=>{
+                                dispatch(authFail("unable to authenticate")),
+
+                                dispatch(logout())
+                                // localStorage.clear()
+
+                            })
+                               
+
+                            
+
+                        }
+                    
+                    
+                    }).catch(err=>{
+                        dispatch(logout()),
+                        localStorage.clear(),
+                        dispatch(authFail("unable to authenticate"))
+
+
+                    }
+                  
+                    )
+
+                }
+                  
+                )
+              
+      
+
+            }catch(e){
+                dispatch(authFail("unable to authenticate"))
+           }
+
+
+        }
+        else{
+
+            dispatch(logout())
+        }
+    }
+
+}
+
+
+

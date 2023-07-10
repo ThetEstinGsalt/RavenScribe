@@ -5,6 +5,7 @@ export const AUTH_LOGOUT = "AUTH_LOGOUT"
 export const AUTH_UPDATE = "AUTH_UPDATE"
 export const AUTH_JWT = "AUTH_JWT"
 
+export const AUTH_CHECK ="AUTH_CHECK"
 
 
 export const FETCH_SUCCESS = "FETCH_SUCCESS"
@@ -19,6 +20,15 @@ export const FONT_SELECT = "FONT_SELECT"
 export const INSERT_SELECT = "INSERT_SELECT"
 
 export const DELETE_SELECT = "DELETE_SELECT"
+
+
+export const PASSWORD_RESET_FAIL = "PASSWORD_RESET_FAIL"
+export const PASSWORD_RESET_SUCCESS = "PASSWORD_RESET_SUCCESS"
+
+export const PASSWORD_RESET_CONFIRM_FAIL = "PASSWORD_RESET_CONFIRM_FAIL"
+export const PASSWORD_RESET_CONFIRM_SUCCESS = "PASSWORD_RESET_CONFIRM_SUCCESS"
+
+
 
 export const SubmitBar_Display = "SubmitBar_Display"
 

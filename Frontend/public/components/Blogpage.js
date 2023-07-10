@@ -4,14 +4,14 @@ import Recommendation from './Recommendation'
 import Drecommendation from './downbar_components/Drecommendation'
 import axios from 'axios';
 import Parser from 'html-react-parser';
+import * as actions from '../store/actions/auth';
 
+import { connect } from 'react-redux';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Blogpage extends Component {
-    state = {
-        blog: [],
-    }
+
 
     constructor(props) {
         super(props)
@@ -19,6 +19,9 @@ class Blogpage extends Component {
         this.content = ""
 
 
+    }
+    state = {
+        blog: [],
     }
 
     id() {
@@ -50,6 +53,7 @@ class Blogpage extends Component {
 
 
     componentDidMount() {
+        console.log(`Authenticated is ${this.props.isAuthenticated}`)
 
         let query = ((window.location.href.split("/")))
         let sno=query[query.length-1]
@@ -679,4 +683,22 @@ class Blogpage extends Component {
 }
 
 
-export default Blogpage
+
+
+const mapStateToProps = (state) => {
+    return {
+        loading: state.loading,
+        error: state.error,
+
+        // isAuthenticated: state.token,
+        isAuthenticated: state.isAuthenticated
+
+    }
+}
+
+
+
+
+export default  (connect(mapStateToProps, null)(Blogpage))
+
+// export default Signup

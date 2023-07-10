@@ -7,7 +7,7 @@ import * as actions from '../store/actions/auth';
 import { connect } from 'react-redux';
 import Signin from '../public/components/Signin';
 
-import Login from '../public/components/Login';
+import Login from '../public/components/Loginc';
 
 
 class Signupiwp extends Component {
@@ -36,15 +36,22 @@ function Signup(props) {
     
 }
 
+// export async function getServerSideProps(context) {
+//     console.log(context)
+
+//     return {
+//       props: {}, 
+//     }
+//   }
 
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.loading,
-        error: state.error,
+        // loading: state.loading,
+        // error: state.error,
 
-        // isAuthenticated: state.token,
-        isAuthenticated: state.token !== null
+        // // isAuthenticated: state.token,
+        // isAuthenticated: state.token !== null
 
     }
 }
@@ -55,7 +62,6 @@ const mapDispatchToProps = (dispatch) => {
 
     }
 }
-
 
 
 export default  (connect(mapStateToProps, mapDispatchToProps)(Signup))

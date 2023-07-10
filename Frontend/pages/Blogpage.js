@@ -500,7 +500,7 @@ class Blogpage extends Component {
                 onselectstart="return false;" 
                 onmousedown="return false;">
                     <div className='VBSS'  >
-                    <Image src={Berry} height={30} width={30} id="Berry"  alt="" />
+                    <Image src={Berry} height={30} width={30} id="Berry"   alt="" />
                     <Image src={Share} height={30} width={30} id=""  alt="" />
                     <Image src={Save} height={30} width={30} id=""  alt="" />
                     <Image src={Download} height={30} width={30} id=""  alt="" />
@@ -846,5 +846,9 @@ class Blogpage extends Component {
     }
 }
 
-
+// export async function getServerSideProps(context) {
+//     return {
+//       props: {}, 
+//     }
+//   }
 export default Blogpage
