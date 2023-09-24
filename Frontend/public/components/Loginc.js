@@ -23,7 +23,7 @@ class Loginc extends Component {
         btn.addEventListener("click",()=>{
             let email=document.getElementById("loginEmailInp")
             let password=document.getElementById("loginPasswordInp")
-            this.props.LoginRDX(email.value,password.value)
+            // this.props.LoginRDX(email.value,password.value)
         })
 
         console.log(this.props.isAuthenticated)

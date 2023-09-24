@@ -60,36 +60,6 @@ class Blogpage extends Component {
         // let query = queryp.replace(/^./, queryp[0].toUpperCase());
         // while (this.state.blog.length !== 0) {
 
-        axios.get(`http://127.0.0.1:8000/api/SEO_FRIENDLY_SLUG/${query}`).then(res => {
-            // this.setState({ Blog: res.data })
-            console.log(res.data.Content)
-            this.setState({ blog: res.data })
-
-            // const fieldValue = (
-            //     <div dangerouslySetInnerHtml={{ __html: this.state.blog.Content }} className="article" name="article" />
-            // );
-            // document.getElementsByClassName("articles")[0].innerHTML = fieldValue
-            document.getElementsByClassName("article")[0].innerHTML = res.data.Content
-
-
-
-        }).catch(function (err) { console.log(err.response.data) });
-        console.log(this.state.blog.Content)
-        // let update_cont = async function () {
-        //     while (inartcontent === "") {
-        //         if (inartcontent === "") {
-        //             inartcontent = await this.state.blog.content
-        //         }
-        //         else {
-        //             break
-        //         }
-
-
-        //     }
-
-        // }
-        // update_cont()
-
 
 
 

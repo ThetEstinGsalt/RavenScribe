@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import index
+from .views import index,activate,PassReset
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 urlpatterns = [
     # path("", index, name="index"),
     path("Blogpage", index, name="index"),
     path("Login", index, name="index"),
-    # path("password/reset/confirm/<slug:uid>/<slug:token>",index,name="index")
+    path("activate/<slug:token>",activate,name="activate"),
+    path("password/reset/confirm/<slug:uid>/<slug:token>",PassReset,name="PassReset")
 
 ]
 
